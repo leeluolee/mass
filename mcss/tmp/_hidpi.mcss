@@ -1,0 +1,4 @@
+body{
+    left: 10px;
+    right: $right;
+}

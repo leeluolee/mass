@@ -1,0 +1,60 @@
+$size = ($width, $height){
+    $height ?= $width;
+    height: $height; 
+    width: $width; 
+}
+// __exmaple__:
+// div{
+//     $size: 50px
+// }
+
+
+// 不带参数, 可视为一个block模版  
+$clearfix = {
+    *zoom: 1;
+    &:before, &:after {
+        display: table;
+        content: "";
+        line-height: 0; 
+    }
+    &:after {
+        clear: both; 
+    }
+}
+// __example__:
+// div{
+//     $clearfix();
+//     .left{
+//         float: left;
+//     }
+//     .right{
+//         float: right;
+//     }
+// }
+
+
+// inline-block
+$inline-block = {
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+}
+
+
+// placeholder
+$placeholder = ($block){
+    &::#{-webkit-input-placeholder, -moz-placeholder} {
+       $block() 
+    }
+    &:#{-moz-placeholder, -ms-placeholder} {
+       $block()
+    }
+}
+
+// __example__ :
+// $placeholder({
+//     left: 20px;
+// });
+

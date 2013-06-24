@@ -1,0 +1,71 @@
+/**
+ * convert the @if statement to function
+ * beacuse call is a expression(means have value), sometimes can simplify our code
+ * __example__:
+ * $max = 100px;
+ * left: $if( $max >= 100px, 300px, 600px);
+ * 
+ */
+$if = ($test, $then, $alt){
+    @if len($arguments) < 2 { error('$if at leat 2 param')}
+    @if $test{
+       @return $then; 
+    }
+    @return $alt;
+}
+
+/**
+ * just like object in javascript, in mcss try use valueslist to fake a object
+ * and use $map to get the value
+ *
+ * __example__ :;
+ * $list = one 1, two  (2 3), three (3, 4, 5);
+ *          
+ * $map($list, two) // => 2 3
+ * __warn__: if the list value use paren to wrap it force it as a expression;
+ */
+$map = ($list, $key){
+  @if typeof($list) != 'valueslist'{
+    error('must valueslist')
+  }
+  @for $li,$i in $list{
+    @if $i == $key{
+      @return $li;
+    }
+  }
+  @return null;
+}
+
+
+/**
+ * prefixr a __declaration__ with $property and $value
+ * the default vendors is webkit moz ms o
+ */
+$prefixr = ($property, $value , $vendors){
+    $vendors ?= webkit moz ms o;
+    @if $value == null {
+        @return {
+            @return $prefixr($property, $arguments, $vendors);
+        }
+    }
+    @for $vendor of $vendors {
+        #{'-' + $vendor + '-' + $property} : $value;
+    }
+    #{$property} : $value;
+}
+
+// @debug $if(1, 2, 3);
+// @debug $map((
+//     one (1,2,3), 
+//     two (2,3,4), 
+//     three (3,4,5)
+//     ), three);
+
+// $border-radius = $prefixr('border-radius', null);
+// $border-box = $prefixr('border-box', null, hello);
+
+// body{
+//     $border-radius: 10px solid #fff, 20px solid;
+//     $border-box: $prefixr;
+// }
+

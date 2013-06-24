@@ -1,0 +1,10 @@
+{
+  "name": "nes",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "mcss": "*",
+    "glolue": "",
+    "commander": ""
+  }
+}

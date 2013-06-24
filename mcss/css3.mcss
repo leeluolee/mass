@@ -1,0 +1,164 @@
+@import 'functions.mcss';
+/**
+ * base css3 vendor prefixr
+ * http://peter.sh/experiments/vendor-prefixed-css-property-overview/
+ * ⓘ
+ */
+$prefix-properties = 
+    //animation
+    animation (webkit moz), 
+    animation-delay (webkit moz), 
+    animation-name (webkit moz), 
+    animation-direction (webkit moz), 
+    animation-duration (webkit moz), 
+    animation-fill-mode (webkit moz), 
+    animation-iteration-count (webkit moz), 
+    animation-timing-function (webkit moz), 
+    //column 
+    columns (webkit moz),
+    column-count (webkit moz),
+    column-gap (webkit moz),
+    column-fill (webkit moz),
+    column-rule (webkit moz),
+    column-rule-color (webkit moz),
+    column-rule-style (webkit moz),
+    column-rule-width (webkit moz),
+    column-span (webkit moz),
+    column-width (webkit moz),
+
+    // flex-box
+    // display-box (mannul create)
+    box-orient (webkit moz),
+    box-pack (webkit moz),
+    box-align (webkit moz),
+    box-direction (webkit moz),
+    box-lines (webkit moz),
+    box-ordinal-group (webkit moz),
+    box-flex (webkit moz),
+    box-flex-group (webkit moz),
+
+
+    // transform
+    transform null,
+    transform-origin null,
+    transform-style null,
+
+    //other
+    appearance (webkit moz ms o),
+    backface-visibility (webkit moz),
+    background-clip webkit,
+    background-origin webkit,
+    background-size webkit,
+    border-box (webkit moz),
+    box-shadow webkit,
+    user-select (webkit moz ms);
+
+@for $vendors, $property in $prefix-properties {
+    define('$'+$property, $prefixr($property, null, $vendors));
+}
+// __example__ :content-box;
+// body{
+//     $border-box: content-box;
+// }
+
+
+// cross-browser display
+$display = ($name){
+    @if $name == box {
+        display: -webkit-box;
+        display: -moz-box;
+        display: box;    
+    }@elseif $name == inline-block{
+        $inline-block();
+    }@else{
+        display: name;
+    }
+}
+
+// __exmaple__:
+// span{
+//     $display: inline-block;
+//     $display: box;
+// }
+
+
+$border-radius = ($radius, $direction){
+    @if !$direction{
+        $join = '';
+    }@else{
+        $join = '-' + join($direction);
+    }
+    $prefixr(border#{$join}-radius, $radius )
+}
+// __example__ :
+// ```
+// body{
+//     $border-radius: 5px, top left;
+// }
+// ```
+
+
+//warning: the block 's context ,if passed a func
+$hidpi = ($block, $ratio = 1.5) {
+    @media only screen and (-webkit-min-device-pixel-ratio: $ratio),
+        only screen and (min--moz-device-pixel-ratio: $ratio),
+        only screen and (-o-min-device-pixel-ratio: ($ratio/1)),
+        only screen and (min-resolution: round($ratio*96) + dpi),
+        only screen and (min-resolution: $ratio + dppx) {
+            $block();
+    }
+}
+
+// __example__:
+// ```css
+// $hidpi({
+//     body{
+//         left: 10px;
+//     }
+//     p{
+//         right: 20px;
+//     }
+// }, 2.0)
+// ```
+
+
+
+// https://github.com/thoughtbot/bourbon/blob/master/app/assets/stylesheets/css3/_image-rendering.scss
+$image-rendering = ($mode = optimizeQuality){
+    @if $mode != optimize-contrast{
+        image-rendering: $mode;
+    }@else{
+        image-rendering: -moz-crisp-edges;
+        image-rendering: -o-crisp-edges;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: optimize-contrast;
+    }
+}
+
+
+$keyframes = ($name, $block){
+    @-webkit-keyframes $name{
+        $block();
+    } 
+    @-moz-keyframes $name{
+        $block();
+    } 
+    @-o-keyframes $name{
+        $block();
+    } 
+    @keyframes $name{
+        $block();
+    } 
+}
+// __examlpe__
+// $keyframes(hello, {
+//     20%{
+//         left: 20px;
+//     }
+//     to{
+//         left: 40px;
+//     }
+// });
+
+
+
