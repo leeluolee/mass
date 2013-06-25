@@ -36,12 +36,15 @@ $prefix-properties =
     box-ordinal-group (webkit moz),
     box-flex (webkit moz),
     box-flex-group (webkit moz),
+    box-shadow (webkit moz),
 
 
     // transform
     transform null,
     transform-origin null,
     transform-style null,
+    perspective (webkit moz),
+    perspective-origin (webkit moz),
 
     //other
     appearance (webkit moz ms o),
@@ -51,7 +54,13 @@ $prefix-properties =
     background-size webkit,
     border-box (webkit moz),
     box-shadow webkit,
-    user-select (webkit moz ms);
+    user-select (webkit moz ms),
+    hyphens (epub moz ms),
+
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+    filter (moz webkit);
+
+
 
 @for $vendors, $property in $prefix-properties {
     define('$'+$property, $prefixr($property, null, $vendors));
@@ -159,6 +168,18 @@ $keyframes = ($name, $block){
 //         left: 40px;
 //     }
 // });
+
+
+
+// placeholder
+$placeholder = ($block){
+    &::#{-webkit-input-placeholder, -moz-placeholder} {
+       $block() 
+    }
+    &:#{-moz-placeholder, -ms-placeholder} {
+       $block()
+    }
+}
 
 
 

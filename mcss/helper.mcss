@@ -1,3 +1,4 @@
+@import 'function.mcss';
 $size = ($width, $height){
     $height ?= $width;
     height: $height; 
@@ -43,18 +44,21 @@ $inline-block = {
 }
 
 
-// placeholder
-$placeholder = ($block){
-    &::#{-webkit-input-placeholder, -moz-placeholder} {
-       $block() 
-    }
-    &:#{-moz-placeholder, -ms-placeholder} {
-       $block()
-    }
+// $opa is between 0 - 1 
+$opacity = ($opa){
+    filter:  alpha(opacity = round($opa * 100));
+    opacity: $opa;
 }
 
-// __example__ :
-// $placeholder({
-//     left: 20px;
-// });
+// short hand $border
+$border = ($color){
+   $border: $if(typeof($color) == 'color', 1px solid $color, $color); 
+}
+
+// @font-face mixin
+
+$font-face = (){
+    
+}
+
 

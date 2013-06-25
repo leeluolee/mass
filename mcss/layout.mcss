@@ -1,0 +1,31 @@
+$gr-g
+
+
+
+
+
+
+
+//http://compass-style.org/examples/compass/layout/stretching/
+//set the elem absolute and
+//stretch to fill their positioning parent.
+$stretch = ($top = 0, $right = 0, $bottom = 0, $left = 0){
+    position: absolute;
+    @if $top != null { top: $top}
+    @if $bottom != null { bottom: $bottom}
+    @if $left != null { left: $left}
+    @if $right != null { right: $right}
+}
+// short cut left 
+$stretch-x = ($top, $bottom){
+    $stretch($top, null, $bottom, null);
+}
+// short cut top
+$stretch-y = ($left, $right){
+    $stretch(null, $left , null, $right);
+}
+
+
+
+
+
