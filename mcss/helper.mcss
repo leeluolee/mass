@@ -1,4 +1,4 @@
-@import 'function.mcss';
+@import 'functions.mcss';
 $size = ($width, $height){
     $height ?= $width;
     height: $height; 

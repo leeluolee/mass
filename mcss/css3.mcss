@@ -1,4 +1,5 @@
 @import 'functions.mcss';
+@import 'helper.mcss';
 /**
  * base css3 vendor prefixr
  * http://peter.sh/experiments/vendor-prefixed-css-property-overview/
@@ -26,7 +27,6 @@ $prefix-properties =
     column-span (webkit moz),
     column-width (webkit moz),
 
-    // flex-box
     // display-box (mannul create)
     box-orient (webkit moz),
     box-pack (webkit moz),

@@ -70,16 +70,18 @@ $prefixr = ($property, $value , $vendors){
 // }
 
 $color-stop = (){
-  @if len($arguments) < 1 
+  @if len($arguments) < 1 {
+
+  }
 }
 
 $opposite-position = (){
-
+  
 }
 
 
 $prefix-transition = ($properties){
-  @if typeof($properties) === 'valueslist' {
+  @if typeof($properties) == 'valueslist' {
     
   }
 }
