@@ -52,13 +52,46 @@ $opacity = ($opa){
 
 // short hand $border
 $border = ($color){
-   $border: $if(typeof($color) == 'color', 1px solid $color, $color); 
+   border: $if(typeof($color) == 'color', 1px solid $color, $color); 
 }
 
-// @font-face mixin
-
-$font-face = (){
-    
+// fix 3px margin
+$float = ($direction = left ){
+    float: $direction;
+    display: inline;
 }
 
+
+// 
+$txt-ellipsis = ($nowrap = true){
+    @if $nowrap {
+        white-space:nowrap}
+    text-overflow:ellipsis; 
+    overflow:hidden;
+}
+
+
+// position
+$position = ($type){
+    position: $type;
+    @if $type == fixed {
+        _position: absolute;
+        z-index: 9999;
+    }
+}
+
+// line-height and height;
+$lh = ($height){
+    height: $height;
+    line-height: $height; 
+}
+
+
+// fixed-container
+$fix-container = ($width = 1000px){
+    width: $width;
+    $clearfix();
+    margin-left: auto;
+    margin-right: auto;
+}
 
