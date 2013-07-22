@@ -18,7 +18,7 @@ $layout = ($widths ,$gap = 0px, $class='col'){
     @for $width, $i of $widths {
         @if $width != auto {
             $float = $if($i != $last, left, right);
-            .#{name}-#{$i + 1} {
+            .#{$class}-#{$i + 1} {
                 float: $float;
                 width: $width;
                 @if $i != 0{
@@ -41,12 +41,12 @@ $layout = ($widths ,$gap = 0px, $class='col'){
         $float = $if($autoIndex != $last, left, right);
         $margin-left = $if($leftWidth, $leftWidth + $autoIndex * $gap, 0px);
         $margin-right = $if($rightWidth, $rightWidth + ($last - $autoIndex) * $gap, 0px);
-        .#{name}-#{$autoIndex + 1} {
+        .#{$class}-#{$autoIndex + 1} {
             width: 100%;
             float: $float;
             margin-left: -$margin-left;
             margin-right: -$margin-right;
-            .#{name}-cnt{
+            .#{$class}-cnt{
                 @if $margin-left > 0px{
                     margin-left: $margin-left + $gap;
                 }
