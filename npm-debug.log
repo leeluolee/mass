@@ -1,0 +1,259 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'canvas' ]
+2 info using npm@1.1.48
+3 info using node@v0.8.6
+4 verbose config file C:\Users\萝卜\.npmrc
+5 verbose config file c:\Program Files (x86)\nodejs\etc\npmrc
+6 verbose config file c:\Program Files (x86)\nodejs\node_modules\npm\npmrc
+7 verbose read json F:\code\mass\package.json
+8 verbose read json F:\code\mass\node_modules\commander\package.json
+9 verbose read json F:\code\mass\node_modules\mcss\package.json
+10 verbose from cache F:\code\mass\package.json
+11 verbose readDependencies using package.json deps
+12 verbose cache add [ 'canvas@*', null ]
+13 silly cache add name=undefined spec="canvas@*" args=["canvas@*",null]
+14 verbose parsed url { pathname: 'canvas@*', path: 'canvas@*', href: 'canvas@*' }
+15 silly cache add name="canvas" spec="*" args=["canvas","*"]
+16 verbose parsed url { pathname: '*', path: '*', href: '*' }
+17 verbose addNamed [ 'canvas', '*' ]
+18 verbose addNamed [ null, '' ]
+19 silly lockFile 5098a37a-canvas canvas@*
+20 verbose lock canvas@* C:\Users\萝卜\AppData\Roaming\npm-cache\5098a37a-canvas.lock
+21 silly addNameRange { name: 'canvas', range: '', hasData: false }
+22 verbose url raw canvas
+23 verbose url resolving [ 'http://registry.npmjs.org/', './canvas' ]
+24 verbose url resolved http://registry.npmjs.org/canvas
+25 info retry registry request attempt 1 at 00:42:24
+26 verbose etag "21T8SKMSH994VF2MBKFE028RY"
+27 http GET http://registry.npmjs.org/canvas
+28 http 304 http://registry.npmjs.org/canvas
+29 silly registry.get cb [ 304,
+29 silly registry.get   { server: 'CouchDB/1.3.0 (Erlang OTP/R15B03)',
+29 silly registry.get     etag: '"21T8SKMSH994VF2MBKFE028RY"',
+29 silly registry.get     date: 'Tue, 25 Jun 2013 16:42:26 GMT',
+29 silly registry.get     'content-length': '0' } ]
+30 verbose etag canvas from cache
+31 silly addNameRange number 2 { name: 'canvas', range: '', hasData: true }
+32 silly addNameRange versions [ 'canvas',
+32 silly addNameRange   [ '0.0.1',
+32 silly addNameRange     '0.0.2',
+32 silly addNameRange     '0.0.3',
+32 silly addNameRange     '0.0.4',
+32 silly addNameRange     '0.0.5',
+32 silly addNameRange     '0.0.6',
+32 silly addNameRange     '0.0.7',
+32 silly addNameRange     '0.0.8',
+32 silly addNameRange     '0.1.0',
+32 silly addNameRange     '0.2.0',
+32 silly addNameRange     '0.2.1',
+32 silly addNameRange     '0.3.0',
+32 silly addNameRange     '0.3.1',
+32 silly addNameRange     '0.3.2',
+32 silly addNameRange     '0.3.3',
+32 silly addNameRange     '0.4.0',
+32 silly addNameRange     '0.4.1',
+32 silly addNameRange     '0.4.2',
+32 silly addNameRange     '0.4.3',
+32 silly addNameRange     '0.5.0',
+32 silly addNameRange     '0.5.1',
+32 silly addNameRange     '0.5.2',
+32 silly addNameRange     '0.5.3',
+32 silly addNameRange     '0.5.4',
+32 silly addNameRange     '0.6.0',
+32 silly addNameRange     '0.7.0',
+32 silly addNameRange     '0.7.1',
+32 silly addNameRange     '0.7.2',
+32 silly addNameRange     '0.7.3',
+32 silly addNameRange     '0.8.0',
+32 silly addNameRange     '0.8.1',
+32 silly addNameRange     '0.8.2',
+32 silly addNameRange     '0.8.3',
+32 silly addNameRange     '0.9.0',
+32 silly addNameRange     '0.10.0',
+32 silly addNameRange     '0.10.1',
+32 silly addNameRange     '0.10.2',
+32 silly addNameRange     '0.10.3',
+32 silly addNameRange     '0.11.0',
+32 silly addNameRange     '0.11.1',
+32 silly addNameRange     '0.11.2',
+32 silly addNameRange     '0.11.3',
+32 silly addNameRange     '0.12.0',
+32 silly addNameRange     '0.12.1',
+32 silly addNameRange     '0.13.0',
+32 silly addNameRange     '0.13.1',
+32 silly addNameRange     '1.0.0',
+32 silly addNameRange     '1.0.1',
+32 silly addNameRange     '1.0.2',
+32 silly addNameRange     '1.0.3' ] ]
+33 verbose addNamed [ 'canvas', '1.0.3' ]
+34 verbose addNamed [ '1.0.3', '1.0.3' ]
+35 silly lockFile 6251add9-canvas-1-0-3 canvas@1.0.3
+36 verbose lock canvas@1.0.3 C:\Users\萝卜\AppData\Roaming\npm-cache\6251add9-canvas-1-0-3.lock
+37 verbose read json C:\Users\萝卜\AppData\Roaming\npm-cache\canvas\1.0.3\package\package.json
+38 silly lockFile 6251add9-canvas-1-0-3 canvas@1.0.3
+39 silly lockFile 5098a37a-canvas canvas@*
+40 silly resolved [ { name: 'canvas',
+40 silly resolved     description: 'Canvas graphics API backed by Cairo',
+40 silly resolved     version: '1.0.3',
+40 silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@learnboost.com' },
+40 silly resolved     keywords:
+40 silly resolved      [ 'canvas',
+40 silly resolved        'graphic',
+40 silly resolved        'graphics',
+40 silly resolved        'pixman',
+40 silly resolved        'cairo',
+40 silly resolved        'image',
+40 silly resolved        'images',
+40 silly resolved        'pdf' ],
+40 silly resolved     homepage: 'https://github.com/learnboost/node-canvas',
+40 silly resolved     repository: { type: 'git', url: 'git://github.com/learnboost/node-canvas' },
+40 silly resolved     scripts: { test: 'make test', install: 'node-gyp rebuild' },
+40 silly resolved     devDependencies: { express: '3.0', jade: '0.28.1', mocha: '*', should: '*' },
+40 silly resolved     engines: { node: '>= 0.6.0' },
+40 silly resolved     main: './lib/canvas.js',
+40 silly resolved     gypfile: true,
+40 silly resolved     readme: '# node-canvas\n\n Node canvas is a [Cairo](http://cairographics.org/) backed Canvas implementation for [NodeJS](http://nodejs.org).\n\n## Authors\n\n  - TJ Holowaychuk ([visionmedia](http://github.com/visionmedia))\n\n## Installation\n\n    $ npm install canvas\n\nUnless previously installed you\'ll _need_ __Cairo__. For system-specific installation view the [Wiki](https://github.com/LearnBoost/node-canvas/wiki/_pages).\n\n## Screencasts\n\n  - [Introduction](http://screenr.com/CTk)\n\n## Example\n\n```javascript\nvar Canvas = require(\'canvas\')\n  , canvas = new Canvas(200,200)\n  , ctx = canvas.getContext(\'2d\');\n\nctx.font = \'30px Impact\';\nctx.rotate(.1);\nctx.fillText("Awesome!", 50, 100);\n\nvar te = ctx.measureText(\'Awesome!\');\nctx.strokeStyle = \'rgba(0,0,0,0.5)\';\nctx.beginPath();\nctx.lineTo(50, 102);\nctx.lineTo(50 + te.width, 102);\nctx.stroke();\n\nconsole.log(\'<img src="\' + canvas.toDataURL() + \'" />\');\n```\n\n## Non-Standard API\n\n node-canvas extends the canvas API to provide interfacing with node, for example streaming PNG data, converting to a `Buffer` instance, etc. Among the interfacing API, in some cases the drawing API has been extended for SSJS image manipulation / creation usage, however keep in mind these additions may fail to render properly within browsers.\n\n### Image#src=Buffer\n\n node-canvas adds `Image#src=Buffer` support, allowing you to read images from disc, redis, etc and apply them via `ctx.drawImage()`. Below we draw scaled down squid png by reading it from the disk with node\'s I/O.\n\n```javascript\nfs.readFile(__dirname + \'/images/squid.png\', function(err, squid){\n  if (err) throw err;\n  img = new Image;\n  img.src = squid;\n  ctx.drawImage(img, 0, 0, img.width / 4, img.height / 4);\n});\n```\n\n Below is an example of a canvas drawing it-self as the source several time:\n\n```javascript\nvar img = new Image;\nimg.src = canvas.toBuffer();\nctx.drawImage(img, 0, 0, 50, 50);\nctx.drawImage(img, 50, 0, 50, 50);\nctx.drawImage(img, 100, 0, 50, 50);\n```\n\n### Image#dataMode\n\nnode-canvas adds `Image#dataMode` support, which can be used to opt-in to mime data tracking of images (currently only JPEGs).\n\nWhen mime data is tracked, in PDF mode JPEGs can be embedded directly into the output, rather than being re-encoded into PNG. This can drastically reduce filesize, and speed up rendering.\n\n```javascript\nvar img = new Image;\nimg.dataMode = Image.MODE_IMAGE; // Only image data tracked\nimg.dataMode = Image.MODE_MIME; // Only mime data tracked\nimg.dataMode = Image.MODE_MIME | Image.MODE_IMAGE; // Both are tracked\n```\n\nIf image data is not tracked, and the Image is drawn to an image rather than a PDF canvas, the output will be junk. Enabling mime data tracking has no benefits (only a slow down) unless you are generating a PDF.\n\n### Canvas#pngStream()\n\n  To create a `PNGStream` simply call `canvas.pngStream()`, and the stream will start to emit _data_ events, finally emitting _end_ when finished. If an exception occurs the _error_ event is emitted.\n\n```javascript\nvar fs = require(\'fs\')\n  , out = fs.createWriteStream(__dirname + \'/text.png\')\n  , stream = canvas.pngStream();\n\nstream.on(\'data\', function(chunk){\n  out.write(chunk);\n});\n\nstream.on(\'end\', function(){\n  console.log(\'saved png\');\n});\n```\n\nCurrently _only_ sync streaming is supported, however we plan on supporting async streaming as well (of course :) ). Until then the `Canvas#toBuffer(callback)` alternative is async utilizing `eio_custom()`.\n\n### Canvas#jpegStream()\n\nYou can likewise create a `JPEGStream` by calling `canvas.jpegStream()` with some optional parameters; functionality is otherwise identical to `pngStream()`. See `examples/crop.js` for an example.\n\n### Canvas#toBuffer()\n\nA call to `Canvas#toBuffer()` will return a node `Buffer` instance containing all of the PNG data.\n\n```javascript\ncanvas.toBuffer();\n```\n\n### Canvas#toBuffer() async\n\nOptionally we may pass a callback function to `Canvas#toBuffer()`, and this process will be performed asynchronously, and will `callback(err, buf)`.\n\n```javascript\ncanvas.toBuffer(function(err, buf){\n\n});\n```\n\n### Canvas#toDataURL() async\n\nOptionally we may pass a callback function to `Canvas#toDataURL()`, and this process will be performed asynchronously, and will `callback(err, str)`.\n\n```javascript\ncanvas.toDataURL(function(err, str){\n\n});\n```\n\nor specify the mime type:\n\n```javascript\ncanvas.toDataURL(\'image/png\', function(err, str){\n\n});\n```\n\n### CanvasRenderingContext2d#patternQuality\n\nGiven one of the values below will alter pattern (gradients, images, etc) render quality, defaults to _good_.\n\n  - fast\n  - good\n  - best\n  - nearest\n  - bilinear\n\n### CanvasRenderingContext2d#textDrawingMode\n\nCan be either `path` or `glyph`. Using `glyph` is much faster than `path` for drawing, and when using a PDF context will embed the text natively, so will be selectable and lower filesize. The downside is that cairo does not have any subpixel precision for `glyph`, so this will be noticeably lower quality for text positioning in cases such as rotated text. Also, strokeText in `glyph` will act the same as fillText, except using the stroke style for the fill.\n\nDefaults to _path_.\n\nThis property is tracked as part of the canvas state in save/restore.\n\n### CanvasRenderingContext2d#filter\n\nLike `patternQuality`, but applies to transformations effecting more than just patterns. Defaults to _good_.\n\n  - fast\n  - good\n  - best\n  - nearest\n  - bilinear\n\n### Global Composite Operations\n\nIn addition to those specified and commonly implemented by browsers, the following have been added:\n\n  - multiply\n  - screen\n  - overlay\n  - hard-light\n  - soft-light\n  - hsl-hue\n  - hsl-saturation\n  - hsl-color\n  - hsl-luminosity\n\n## Anti-Aliasing\n\n Set anti-aliasing mode\n\n - default\n - none\n - gray\n - subpixel\n\n For example:\n\n```javascript\nctx.antialias = \'none\';\n```\n\n## PDF Support\n\n  Basic PDF support was added in 0.11.0. Make sure to install cairo with `--enable-pdf=yes` for the PDF backend. node-canvas must know that it is creating\n  a PDF on initialization, using the "pdf" string:\n\n```js\nvar canvas = new Canvas(200, 500, \'pdf\');\n```\n\n An additional method `.addPage()` is then available to create \n multiple page PDFs:\n\n```js\nctx.font = \'22px Helvetica\';\nctx.fillText(\'Hello World\', 50, 80);\nctx.addPage();\n\nctx.font = \'22px Helvetica\';\nctx.fillText(\'Hello World 2\', 50, 80);\nctx.addPage();\n\nctx.font = \'22px Helvetica\';\nctx.fillText(\'Hello World 3\', 50, 80);\nctx.addPage();\n```\n\n## Benchmarks\n\n Although node-canvas is extremely new, and we have not even begun optimization yet it is already quite fast. For benchmarks vs other node canvas implementations view this [gist](https://gist.github.com/664922), or update the submodules and run `$ make benchmark` yourself.\n\n## Contribute\n\n Want to contribute to node-canvas? patches for features, bug fixes, documentation, examples and others are certainly welcome. Take a look at the [issue queue](https://github.com/LearnBoost/node-canvas/issues) for existing issues.\n\n## Examples\n\n Examples are placed in _./examples_, be sure to check them out! most produce a png image of the same name, and others such as _live-clock.js_ launch an http server to be viewed in the browser.\n\n## Testing\n\nIf you have not previously, init git submodules:\n\n    $ git submodule update --init\n\nBuild node-canvas:\n\n    $ node-waf configure build\n\nUnit tests:\n\n    $ make test\n\nVisual tests:\n\n    $ make test-server\n\n## Versions\n\nTested with and designed for:\n\n  - node 0.4.2\n  - cairo 1.8.6\n\nFor node 0.2.x `node-canvas` <= 0.4.3 may be used,\n0.5.0 and above are designed for node 0.4.x only.\n\n## Contributors\n\n```\nproject  : node-canvas\n repo age : 1 year, 11 months\n active   : 120 days\n commits  : 963\n files    : 72\n authors  : \n   816\tTj Holowaychuk          84.7%\n    58\tTJ Holowaychuk          6.0%\n    23\tc-spencer               2.4%\n    16\tNathan Rajlich          1.7%\n    12\tatomizer                1.2%\n     6\tElijah Hamovitz         0.6%\n     5\tLuigi Pinca             0.5%\n     5\tRobert Sköld            0.5%\n     4\tobarthel                0.4%\n     3\tDon Park                0.3%\n     2\tAndreas Botsikas        0.2%\n     2\tGabriel Falcao          0.2%\n     1\tBrian McKinney          0.1%\n     1\tSeiya Konno             0.1%\n     1\tSyoyo Fujita            0.1%\n     1\tMarcello Bastea-Forte   0.1%\n     1\tTharit                  0.1%\n     1\tKonstantin Käfer        0.1%\n     1\tTom Carden              0.1%\n     1\tWalt Lin                0.1%\n     1\tDavid Björklund         0.1%\n     1\tBrian White             0.1%\n     1\tPhilippe Plantier       0.1%\n```\n\n## License\n\n(The MIT License)\n\nCopyright (c) 2010 LearnBoost &lt;dev@learnboost.ca&gt;\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\'Software\'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \'AS IS\', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
+40 silly resolved     _id: 'canvas@1.0.3',
+40 silly resolved     _from: 'canvas@*' } ]
+41 info install canvas@1.0.3 into F:\code\mass
+42 info installOne canvas@1.0.3
+43 verbose from cache C:\Users\萝卜\AppData\Roaming\npm-cache\canvas\1.0.3\package\package.json
+44 info F:\code\mass\node_modules\canvas unbuild
+45 verbose read json F:\code\mass\node_modules\canvas\package.json
+46 verbose tar unpack C:\Users\萝卜\AppData\Roaming\npm-cache\canvas\1.0.3\package.tgz
+47 silly lockFile 1de2ac77-F-code-mass-node-modules-canvas F:\code\mass\node_modules\canvas
+48 verbose lock F:\code\mass\node_modules\canvas C:\Users\萝卜\AppData\Roaming\npm-cache\1de2ac77-F-code-mass-node-modules-canvas.lock
+49 silly gunzTarPerm modes [ '755', '644' ]
+50 silly gunzTarPerm extractEntry package.json
+51 silly gunzTarPerm modified mode [ 'package.json', 438, 420 ]
+52 silly gunzTarPerm extractEntry .npmignore
+53 silly gunzTarPerm modified mode [ '.npmignore', 438, 420 ]
+54 silly gunzTarPerm extractEntry index.js
+55 silly gunzTarPerm modified mode [ 'index.js', 438, 420 ]
+56 silly gunzTarPerm extractEntry install
+57 silly gunzTarPerm modified mode [ 'install', 438, 420 ]
+58 silly gunzTarPerm extractEntry History.md
+59 silly gunzTarPerm modified mode [ 'History.md', 438, 420 ]
+60 silly gunzTarPerm extractEntry .gitmodules
+61 silly gunzTarPerm modified mode [ '.gitmodules', 438, 420 ]
+62 silly gunzTarPerm extractEntry .travis.yml
+63 silly gunzTarPerm modified mode [ '.travis.yml', 438, 420 ]
+64 silly gunzTarPerm extractEntry lib/bindings.js
+65 silly gunzTarPerm modified mode [ 'lib/bindings.js', 438, 420 ]
+66 silly gunzTarPerm extractEntry lib/canvas.js
+67 silly gunzTarPerm modified mode [ 'lib/canvas.js', 438, 420 ]
+68 silly gunzTarPerm extractEntry lib/context2d.js
+69 silly gunzTarPerm modified mode [ 'lib/context2d.js', 438, 420 ]
+70 silly gunzTarPerm extractEntry lib/image.js
+71 silly gunzTarPerm modified mode [ 'lib/image.js', 438, 420 ]
+72 silly gunzTarPerm extractEntry lib/jpegstream.js
+73 silly gunzTarPerm modified mode [ 'lib/jpegstream.js', 438, 420 ]
+74 silly gunzTarPerm extractEntry lib/pixelarray.js
+75 silly gunzTarPerm modified mode [ 'lib/pixelarray.js', 438, 420 ]
+76 silly gunzTarPerm extractEntry lib/pngstream.js
+77 silly gunzTarPerm modified mode [ 'lib/pngstream.js', 438, 420 ]
+78 silly gunzTarPerm extractEntry Makefile
+79 silly gunzTarPerm modified mode [ 'Makefile', 438, 420 ]
+80 silly gunzTarPerm extractEntry binding.gyp
+81 silly gunzTarPerm modified mode [ 'binding.gyp', 438, 420 ]
+82 silly gunzTarPerm extractEntry Readme.md
+83 silly gunzTarPerm modified mode [ 'Readme.md', 438, 420 ]
+84 silly gunzTarPerm extractEntry src/FontFace.cc
+85 silly gunzTarPerm modified mode [ 'src/FontFace.cc', 438, 420 ]
+86 silly gunzTarPerm extractEntry src/Canvas.cc
+87 silly gunzTarPerm modified mode [ 'src/Canvas.cc', 438, 420 ]
+88 silly gunzTarPerm extractEntry src/CanvasGradient.cc
+89 silly gunzTarPerm modified mode [ 'src/CanvasGradient.cc', 438, 420 ]
+90 silly gunzTarPerm extractEntry src/CanvasGradient.h
+91 silly gunzTarPerm modified mode [ 'src/CanvasGradient.h', 438, 420 ]
+92 silly gunzTarPerm extractEntry src/CanvasPattern.cc
+93 silly gunzTarPerm modified mode [ 'src/CanvasPattern.cc', 438, 420 ]
+94 silly gunzTarPerm extractEntry src/CanvasPattern.h
+95 silly gunzTarPerm modified mode [ 'src/CanvasPattern.h', 438, 420 ]
+96 silly gunzTarPerm extractEntry src/CanvasRenderingContext2d.cc
+97 silly gunzTarPerm modified mode [ 'src/CanvasRenderingContext2d.cc', 438, 420 ]
+98 silly gunzTarPerm extractEntry src/CanvasRenderingContext2d.h
+99 silly gunzTarPerm modified mode [ 'src/CanvasRenderingContext2d.h', 438, 420 ]
+100 silly gunzTarPerm extractEntry src/closure.h
+101 silly gunzTarPerm modified mode [ 'src/closure.h', 438, 420 ]
+102 silly gunzTarPerm extractEntry src/color.cc
+103 silly gunzTarPerm modified mode [ 'src/color.cc', 438, 420 ]
+104 silly gunzTarPerm extractEntry src/color.h
+105 silly gunzTarPerm modified mode [ 'src/color.h', 438, 420 ]
+106 silly gunzTarPerm extractEntry src/Canvas.h
+107 silly gunzTarPerm modified mode [ 'src/Canvas.h', 438, 420 ]
+108 silly gunzTarPerm extractEntry src/FontFace.h
+109 silly gunzTarPerm modified mode [ 'src/FontFace.h', 438, 420 ]
+110 silly gunzTarPerm extractEntry src/Image.cc
+111 silly gunzTarPerm modified mode [ 'src/Image.cc', 438, 420 ]
+112 silly gunzTarPerm extractEntry src/Image.h
+113 silly gunzTarPerm modified mode [ 'src/Image.h', 438, 420 ]
+114 silly gunzTarPerm extractEntry src/ImageData.cc
+115 silly gunzTarPerm modified mode [ 'src/ImageData.cc', 438, 420 ]
+116 silly gunzTarPerm extractEntry src/ImageData.h
+117 silly gunzTarPerm modified mode [ 'src/ImageData.h', 438, 420 ]
+118 silly gunzTarPerm extractEntry src/init.cc
+119 silly gunzTarPerm modified mode [ 'src/init.cc', 438, 420 ]
+120 silly gunzTarPerm extractEntry src/JPEGStream.h
+121 silly gunzTarPerm modified mode [ 'src/JPEGStream.h', 438, 420 ]
+122 silly gunzTarPerm extractEntry src/PixelArray.cc
+123 silly gunzTarPerm modified mode [ 'src/PixelArray.cc', 438, 420 ]
+124 silly gunzTarPerm extractEntry src/PixelArray.h
+125 silly gunzTarPerm modified mode [ 'src/PixelArray.h', 438, 420 ]
+126 silly gunzTarPerm extractEntry src/Point.h
+127 silly gunzTarPerm modified mode [ 'src/Point.h', 438, 420 ]
+128 silly gunzTarPerm extractEntry util/cairo_include.sh
+129 silly gunzTarPerm modified mode [ 'util/cairo_include.sh', 438, 420 ]
+130 silly gunzTarPerm extractEntry util/has_cairo_freetype.sh
+131 silly gunzTarPerm modified mode [ 'util/has_cairo_freetype.sh', 438, 420 ]
+132 silly gunzTarPerm extractEntry util/has_lib.sh
+133 silly gunzTarPerm modified mode [ 'util/has_lib.sh', 438, 420 ]
+134 silly gunzTarPerm extractEntry util/lib_lookup.sh
+135 silly gunzTarPerm modified mode [ 'util/lib_lookup.sh', 438, 420 ]
+136 verbose read json F:\code\mass\node_modules\canvas\package.json
+137 silly lockFile 1de2ac77-F-code-mass-node-modules-canvas F:\code\mass\node_modules\canvas
+138 info preinstall canvas@1.0.3
+139 verbose from cache F:\code\mass\node_modules\canvas\package.json
+140 verbose readDependencies using package.json deps
+141 verbose from cache F:\code\mass\node_modules\canvas\package.json
+142 verbose readDependencies using package.json deps
+143 silly resolved []
+144 verbose about to build F:\code\mass\node_modules\canvas
+145 info build F:\code\mass\node_modules\canvas
+146 verbose from cache F:\code\mass\node_modules\canvas\package.json
+147 verbose linkStuff [ false, false, false, 'F:\\code\\mass\\node_modules' ]
+148 info linkStuff canvas@1.0.3
+149 verbose linkBins canvas@1.0.3
+150 verbose linkMans canvas@1.0.3
+151 verbose rebuildBundles canvas@1.0.3
+152 info install canvas@1.0.3
+153 verbose unsafe-perm in lifecycle true
+154 silly exec cmd "/c" "node-gyp rebuild"
+155 silly cmd,/c,node-gyp rebuild,F:\code\mass\node_modules\canvas spawning
+156 info canvas@1.0.3 Failed to exec install script
+157 info F:\code\mass\node_modules\canvas unbuild
+158 verbose from cache F:\code\mass\node_modules\canvas\package.json
+159 info preuninstall canvas@1.0.3
+160 info uninstall canvas@1.0.3
+161 verbose true,F:\code\mass\node_modules,F:\code\mass\node_modules unbuild canvas@1.0.3
+162 info postuninstall canvas@1.0.3
+163 error canvas@1.0.3 install: `node-gyp rebuild`
+163 error `cmd "/c" "node-gyp rebuild"` failed with 1
+164 error Failed at the canvas@1.0.3 install script.
+164 error This is most likely a problem with the canvas package,
+164 error not with npm itself.
+164 error Tell the author that this fails on your system:
+164 error     node-gyp rebuild
+164 error You can get their info via:
+164 error     npm owner ls canvas
+164 error There is likely additional logging output above.
+165 error System Windows_NT 6.1.7600
+166 error command "c:\\Program Files (x86)\\nodejs\\node.exe" "c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "canvas"
+167 error cwd F:\code\mass
+168 error node -v v0.8.6
+169 error npm -v 1.1.48
+170 error code ELIFECYCLE
+171 verbose exit [ 1, true ]

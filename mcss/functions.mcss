@@ -69,17 +69,132 @@ $prefixr = ($property, $value , $vendors){
 //     $border-box: $prefixr;
 // }
 
-$color-stop = (){
-  @if len($arguments) < 1 
-}
 
-$opposite-position = (){
+$ops-map = 
+  left right,
+  right left,
+  top bottom,
+  bottom top;
 
+$opposite = ($value){
+  @if is-list($value){
+    @return $map($ops-map, index($value, 0)) $map($ops-map, index($value, 1));
+  }
+  @return $map($ops-map, $value); 
 }
 
 
 $prefix-transition = ($properties){
-  @if typeof($properties) === 'valueslist' {
+  @if typeof($properties) == 'valueslist' {
     
   }
 }
+
+
+
+
+/**
+ * other private functions
+ */
+$linear-pos = ($pos){
+  $type-pos = typeof($pos);
+  $corner-or-side = null;
+  @if $type-pos == 'values' {
+    $nth0 = index($pos, 0);
+    @if $nth0 == to { //spec version means end position
+        $corner-or-side = $opposite(slice($pos, 1));
+    }@else{           // start position
+        $corner-or-side = $pos;
+    }
+  }@else{
+    $corner-or-side = $pos;
+  }
+  @return $corner-or-side;
+}
+
+$get-stop-color = ($color-stop){
+    @if is-list($color-stop){
+        @return index($color-stop, 0)
+    }
+    @return $color-stop;
+}
+
+$linear-gradient = ($pos, $color-stops...){
+  $type-pos = typeof($pos);
+  $deg = null;
+  // @debug index($pos, 0);
+  @if $type-pos == 'color' || ($type-pos == 'values' && typeof(index($pos, 0)) == 'color' ){
+    push($color-stops, $pos);
+    $pos = null;
+  }
+  @if $type-pos == 'dimension' {
+      $deg = $pos;
+  }@else {
+      $pos = $linear-pos($pos);
+  }
+  $start = $get-stop-color(index($color-stops, 0));
+  $end = $get-stop-color(index($color-stops, len($color-stops) - 1));
+  $fallback = mix($start, $end);
+
+  // @if $pos{
+  //   @if typeof($pos) == 'dimension'{
+  //     push($color-stops, $pos); // means degree
+  //   }@else{
+  //     push($color-stops, to $pos);
+  //   }
+  // }
+  $specs = $color-stops;
+  $other = slice($color-stops);
+  $gradient-type = null;
+  @if $deg != null {
+     unshift($specs, $deg);
+     unshift($other, $deg);
+     @if $deg == 0deg{
+        $gradient-type = 1;
+     }@elseif $deg == -90deg{
+        $type = 0; 
+     }
+  }@elseif($pos != null){
+     unshift($specs, to $opposite($pos));
+     unshift($other, $pos);
+     @if $pos == left{
+        $gradient-type = 1;
+     }@elseif $pos == top{
+        $gradient-type = 0;
+     }
+  }@else{ // default top -> bottom
+     $gradient-type = 0;
+  }
+  background-color: $fallback; //fallback
+  background-image: -webkit-linear-gradient($other); // chrome 2+ safari 4+
+  background-image: -moz-linear-gradient($other); // ff
+  background-image: -ms-linear-gradient($other); //ie10
+  background-image: -o-linear-gradient($other); //opeator
+  background-image: linear-gradient($specs); //spec
+  // @REMOVE hack for lt ie9 
+  @if $gradient-type != null{
+    filter: t("progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=%s)" % (argb($start), argb($end), $gradient-type)) \9;
+  }
+}
+
+// close ie hack support
+$ie-reset-gradient = {
+  filter: t("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+
+$radial-gradient = ($color-stops...) {
+    $start = $get-stop-color(index($color-stops, 0));
+    $end = $get-stop-color(index($color-stops, len($color-stops) - 1));
+    $fallback = mix($start, $end);
+    unshift($color-stops, ellipse);
+    background-color: $fallback;
+    background-image: -webkit-radial-gradient($color-stops);
+    background-image: -moz-radial-gradient($color-stops);
+    background-image: -ms-radial-gradient($color-stops);
+    background-image: -o-radial-gradient($color-stops);
+    background-image: radial-gradient($color-stops);
+    background-repeat: no-repeat;
+}
+
+
+

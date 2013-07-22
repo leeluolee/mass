@@ -1,10 +1,23 @@
 @import 'functions.mcss';
+@import 'helper.mcss';
+
+
+
 /**
  * base css3 vendor prefixr
  * http://peter.sh/experiments/vendor-prefixed-css-property-overview/
  * ⓘ
  */
+
 $prefix-properties = 
+    // transition
+    transition (webkit moz),
+    transition-delay (webkit moz),
+    transition-property (webkit moz),
+    transition-duration (webkit moz),
+    transition-timing-function (webkit moz),
+
+
     //animation
     animation (webkit moz), 
     animation-delay (webkit moz), 
@@ -26,9 +39,9 @@ $prefix-properties =
     column-span (webkit moz),
     column-width (webkit moz),
 
-    // flex-box
     // display-box (mannul create)
     box-orient (webkit moz),
+    box-sizing (webkit moz),
     box-pack (webkit moz),
     box-align (webkit moz),
     box-direction (webkit moz),
@@ -71,33 +84,13 @@ $prefix-properties =
 // }
 
 
-// cross-browser display
-$display = ($name){
-    @if $name == box {
-        display: -webkit-box;
-        display: -moz-box;
-        display: box;    
-    }@elseif $name == inline-block{
-        $inline-block();
-    }@else{
-        display: name;
-    }
-}
-
-// __exmaple__:
-// span{
-//     $display: inline-block;
-//     $display: box;
-// }
-
-
 $border-radius = ($radius, $direction){
     @if !$direction{
         $join = '';
     }@else{
         $join = '-' + join($direction);
     }
-    $prefixr(border#{$join}-radius, $radius )
+    $prefixr(border#{$join}-radius, $radius, moz)
 }
 // __example__ :
 // ```
@@ -143,6 +136,9 @@ $image-rendering = ($mode = optimizeQuality){
         image-rendering: optimize-contrast;
     }
 }
+
+
+
 
 
 $keyframes = ($name, $block){

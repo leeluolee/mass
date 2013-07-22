@@ -1,2 +1,2 @@
-test/assets/*
-node_modules/*
+test/*
+*node_modules*

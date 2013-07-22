@@ -1,5 +1,60 @@
-$gr-g
+@import 'helper';
+@import 'functions';
 
+/**
+ * [$layout description]
+ * @type {[type]}
+ */
+$layout = ($widths ,$gap = 0px, $class='col'){
+    $clearfix();
+    @if !is-list($widths){
+        error('expect list(values, valueslist) bug got ' + $widths);
+    } 
+    $last = len($widths) - 1; 
+    // has a fluid section already
+    $autoIndex = null;
+    $leftWidth = 0px;
+    $rightWidth = 0px;
+    @for $width, $i of $widths {
+        @if $width != auto {
+            $float = $if($i != $last, left, right);
+            .#{name}-#{$i + 1} {
+                float: $float;
+                width: $width;
+                @if $i != 0{
+                    margin-left: $gap;
+                }
+            }
+            @if $autoIndex == null{
+                $leftWidth = $leftWidth + $width;
+            }@else{
+                $rightWidth = $rightWidth + $width;
+            }
+        }@else{
+            @if $autoIndex != null{
+                error('only one block can auto width');
+            }
+            $autoIndex = $i;
+        }
+    } 
+    @if $autoIndex != null{
+        $float = $if($autoIndex != $last, left, right);
+        $margin-left = $if($leftWidth, $leftWidth + $autoIndex * $gap, 0px);
+        $margin-right = $if($rightWidth, $rightWidth + ($last - $autoIndex) * $gap, 0px);
+        .#{name}-#{$autoIndex + 1} {
+            width: 100%;
+            float: $float;
+            margin-left: -$margin-left;
+            margin-right: -$margin-right;
+            .#{name}-cnt{
+                @if $margin-left > 0px{
+                    margin-left: $margin-left + $gap;
+                }
+                margin-right: $margin-right;
+            }        
+        }
+    }
+}
 
 
 
@@ -29,3 +84,31 @@ $stretch-y = ($left, $right){
 
 
 
+
+
+$grid = ($gap, $width, $num = 12){
+    [class ^="span"] {
+        float: left;
+        min-height: 1px; // prevent collapsing columns
+        margin-left: $gap;
+    }
+    @for $index of 1...$num {
+        .span-#{$index}{
+            width: $width * $index + $gap * ($index - 1);
+        }
+        .offset-#{$index}{
+            margin-left: $gap * ($index + 1) + $width * $index;
+        }
+    }
+    .row{
+        margin-left : -$gap;
+    }
+    .g-cnt{
+        $clearfix();
+        width: $width * $num + $gap * $num;
+    }   
+    
+}
+
+
+    
