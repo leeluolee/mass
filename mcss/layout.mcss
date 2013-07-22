@@ -19,6 +19,7 @@ $layout = ($widths ,$gap = 0px, $class='col'){
         @if $width != auto {
             $float = $if($i != $last, left, right);
             .#{$class}-#{$i + 1} {
+                position: relative;
                 float: $float;
                 width: $width;
                 @if $i != 0{
@@ -47,6 +48,7 @@ $layout = ($widths ,$gap = 0px, $class='col'){
             margin-left: -$margin-left;
             margin-right: -$margin-right;
             .#{$class}-cnt{
+                position: relative;
                 @if $margin-left > 0px{
                     margin-left: $margin-left + $gap;
                 }
