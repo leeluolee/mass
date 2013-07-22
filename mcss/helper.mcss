@@ -68,6 +68,22 @@ $txt-ellipsis = ($nowrap = true){
         white-space:nowrap}
     text-overflow:ellipsis; 
     overflow:hidden;
+    }
+}
+
+// fix 3px margin
+$float = ($direction = left ){
+    float: $direction;
+    display: inline;
+}
+
+
+// 
+$txt-ellipsis = ($nowrap = true){
+    @if $nowrap {
+        white-space:nowrap}
+    text-overflow:ellipsis; 
+    overflow:hidden;
 }
 
 
@@ -114,4 +130,3 @@ $display = ($name){
 //     $display: box;
 // }
 
-    
