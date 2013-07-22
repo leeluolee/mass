@@ -65,10 +65,9 @@ $float = ($direction = left ){
 // 
 $txt-ellipsis = ($nowrap = true){
     @if $nowrap {
-        white-space:nowrap}
+        white-space:nowrap }
     text-overflow:ellipsis; 
     overflow:hidden;
-    }
 }
 
 // fix 3px margin
