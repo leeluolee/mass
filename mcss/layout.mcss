@@ -39,7 +39,7 @@ $layout = ($widths ,$gap = 0px, $class='col'){
     } 
     @if $autoIndex != null{
         $float = $if($autoIndex != $last, left, right);
-        $margin-left = $if($leftWidth, $leftWidth + $autoIndex * $gap, 0px);
+        $margin-left = $if($leftWidth, $leftWidth + ($autoIndex - 1) * $gap, 0px);
         $margin-right = $if($rightWidth, $rightWidth + ($last - $autoIndex) * $gap, 0px);
         .#{$class}-#{$autoIndex + 1} {
             width: 100%;
@@ -51,7 +51,7 @@ $layout = ($widths ,$gap = 0px, $class='col'){
                     margin-left: $margin-left + $gap;
                 }
                 margin-right: $margin-right;
-            }        
+            }
         }
     }
 }

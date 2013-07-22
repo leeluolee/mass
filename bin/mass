@@ -1,8 +1,0 @@
-#!/usr/bin/env node
-var fs = require('fs'),
-    globule = require('globule'),
-    mcss = require('mcss');
-
-
-var program = require('commander')
-  .version(version || '0.0.1')
