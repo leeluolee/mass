@@ -1,0 +1,116 @@
+@import 'helper';
+@import 'functions';
+
+/**
+ * [$layout description]
+ * @type {[type]}
+ */
+$layout = ($widths ,$gap = 0px, $class='col'){
+    $clearfix();
+    @if !is-list($widths){
+        error('expect list(values, valueslist) bug got ' + $widths);
+    } 
+    $last = len($widths) - 1; 
+    // has a fluid section already
+    $autoIndex = null;
+    $leftWidth = 0px;
+    $rightWidth = 0px;
+    @for $width, $i of $widths {
+        @if $width != auto {
+            $float = $if($i != $last, left, right);
+            .#{$class}-#{$i + 1} {
+                position: relative;
+                float: $float;
+                width: $width;
+                @if $i != 0{
+                    margin-left: $gap;
+                }
+            }
+            @if $autoIndex == null{
+                $leftWidth = $leftWidth + $width;
+            }@else{
+                $rightWidth = $rightWidth + $width;
+            }
+        }@else{
+            @if $autoIndex != null{
+                error('only one block can auto width');
+            }
+            $autoIndex = $i;
+        }
+    } 
+    @if $autoIndex != null{
+        $float = $if($autoIndex != $last, left, right);
+        $margin-left = $if($leftWidth, $leftWidth + ($autoIndex - 1) * $gap, 0px);
+        $margin-right = $if($rightWidth, $rightWidth + ($last - $autoIndex) * $gap, 0px);
+        .#{$class}-#{$autoIndex + 1} {
+            width: 100%;
+            float: $float;
+            margin-left: -$margin-left;
+            margin-right: -$margin-right;
+            .#{$class}-cnt{
+                position: relative;
+                @if $margin-left > 0px{
+                    margin-left: $margin-left + $gap;
+                }
+                margin-right: $margin-right;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+//http://compass-style.org/examples/compass/layout/stretching/
+//set the elem absolute and
+//stretch to fill their positioning parent.
+$stretch = ($top = 0, $right = 0, $bottom = 0, $left = 0){
+    position: absolute;
+    @if $top != null { top: $top}
+    @if $bottom != null { bottom: $bottom}
+    @if $left != null { left: $left}
+    @if $right != null { right: $right}
+}
+// short cut left 
+$stretch-x = ($top, $bottom){
+    $stretch($top, null, $bottom, null);
+}
+// short cut top
+$stretch-y = ($left, $right){
+    $stretch(null, $left , null, $right);
+}
+
+
+
+
+
+
+
+$grid = ($gap, $width, $num = 12){
+    [class ^="span"] {
+        float: left;
+        min-height: 1px; // prevent collapsing columns
+        margin-left: $gap;
+    }
+    @for $index of 1...$num {
+        .span-#{$index}{
+            width: $width * $index + $gap * ($index - 1);
+        }
+        .offset-#{$index}{
+            margin-left: $gap * ($index + 1) + $width * $index;
+        }
+    }
+    .row{
+        margin-left : -$gap;
+    }
+    .g-cnt{
+        $clearfix();
+        width: $width * $num + $gap * $num;
+    }   
+    
+}
+
+
+    
