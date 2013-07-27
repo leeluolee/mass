@@ -20,6 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SO
  * Use animate less version https://github.com/machito/animate.less/blob/master/animate.less  for compare
  */
 
+/**
+ * @TDO Keyframes之间可以进行组合, 超强Idea
+ */
 @import 'css3';
 
 
@@ -61,6 +64,14 @@ $gen-keyframes-func = ($name, $block, $with-class){
   }, true);
 }
 
+$composite = ($blocks..., $name){
+  .animated.#{$name}{
+    $animation-name: $name;}
+
+  .animated.#{$name}{
+    $animation-name: $name;}
+}
+
 $-generate = $if($effect-outport, $gen-keyframes, $gen-keyframes-func);
 
 /**
@@ -74,11 +85,6 @@ body {
   $animation-duration: 1s;
   $animation-fill-mode: both;
 }
-
-.animated.hinge {
-  $animation-duration: 2s;
-}
-
 
 /**
  * 2. effect
@@ -96,24 +102,16 @@ $-generate(flash,($prefix){
 // $shake($offset = 15px)
 // --------------------
 $-generate(shake, ($prefix, $offset = 15px){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
+
   0%, 100% {#{$prefix}transform: translateX(0);}
   10%, 30%, 50%, 70%, 90% {#{$prefix}transform: translateX(-$offset);}
   20%, 40%, 60%, 80% {#{$prefix}transform: translateX($offset);}
 });
 
-// $bounce($height)
-// ------------------
-$-generate(bounce, ($prefix, $height){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
-  0%, 20%, 50%, 80%, 100% {#{$prefix}transform: translateY(0);}
-  40% {#{$prefix}transform: translateY(-$height);}
-  60% {#{$prefix}transform: translateY(-$height / 2);}
-});
 
 // tada
 $-generate(tada, ($prefix, $scale-offset = 0.2, $degree = 3deg){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
+
   0% {#{$prefix}transform: scale(1);} 
   10%, 20% {#{$prefix}transform: scale(1 - $scale-offset) rotate(-$degree);}
   30%, 50%, 70%, 90% {#{$prefix}transform: scale(1 + $scale-offset) rotate($degree);}
@@ -123,25 +121,23 @@ $-generate(tada, ($prefix, $scale-offset = 0.2, $degree = 3deg){
 
 // swing
 $-generate(swing, ($prefix, $degree){
+  @if($prefix == -webkit-){
+    20%, 40%, 60%, 80%, 100% { -webkit-transform-origin: top center; } }
 
-  $pre = $prefix && ('-' + $prefix + '-') || '';
-  @if($prefix == webkit){
-    20%, 40%, 60%, 80%, 100% { -webkit-transform-origin: top center; }
-  }
-  20% { #{$pre}transform: rotate($degree); } 
-  40% { #{$pre}transform: rotate(-$degree / 3 * 2); }
-  60% { #{$pre}transform: rotate($degree / 3); }  
-  80% { #{$pre}transform: rotate(-$degree / 3); } 
-  100% { #{$pre}transform: rotate(0deg); }
+  20% { #{$prefix}transform: rotate($degree); } 
+  40% { #{$prefix}transform: rotate(-$degree / 3 * 2); }
+  60% { #{$prefix}transform: rotate($degree / 3); }  
+  80% { #{$prefix}transform: rotate(-$degree / 3); } 
+  100% { #{$prefix}transform: rotate(0deg); }
 }, {
-  $transform-origin: top center
+  $transform-origin: top center;
 });
 
 // wobble
 $-generate(wobble, ($prefix, $offset = 25%, $degree = 5deg){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
   $step = $offset / 5;
   $deg = $degree / 5;
+
   0%  { #{$prefix}transform: translateX(0%); }
   15% { #{$prefix}transform: translateX(-$offset) rotate(-$degree); }
   30% { #{$prefix}transform: translateX($step * 4) rotate(4 * $deg); }
@@ -150,11 +146,21 @@ $-generate(wobble, ($prefix, $offset = 25%, $degree = 5deg){
   75% { #{$prefix}transform: translateX(-$step) rotate(-1 * $deg); }
   100% { #{$prefix}transform: translateX(0); }
 });
+// wiggle
+$-generate(wiggle, ($prefix, $degree = 12deg){
+  $deg = $degree / 6;
+  0%  { #{$prefix}transform: skewX($deg * 6) }
+  15% { #{$prefix}transform: skewX(-$deg * 5); }
+  30% { #{$prefix}transform: skewX(4 * $deg); }
+  45% { #{$prefix}transform: skewX(-3 * $deg); }
+  60% { #{$prefix}transform: skewX(2 * $deg); }
+  75% { #{$prefix}transform: skewX(-1 * $deg); }
+  100% { #{$prefix}transform: skewX(0deg)}
+});
 
 // pulse
 // --------------------------
 $-generate(pulse, ($prefix, $scale-offset=0.1){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
   0% { #{$prefix}transform: scale(1); }  
   50% { #{$prefix}transform: scale(1 + $scale-offset); }
   100% { #{$prefix}transform: scale(1); }
@@ -163,27 +169,22 @@ $-generate(pulse, ($prefix, $scale-offset=0.1){
 // flip
 // --------------------------
 $-generate(flip, ($prefix, $perspect = 300px){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
+
   0% {
     #{$prefix}transform: perspective($perspect) rotateY(0);
-    #{$prefix}animation-timing-function: ease-out;
-  }
+    #{$prefix}animation-timing-function: ease-out; }
   40% {
     #{$prefix}transform: perspective($perspect) translateZ(100px) rotateY(170deg);
-    #{$prefix}animation-timing-function: ease-out;
-  }
+    #{$prefix}animation-timing-function: ease-out; }
   50% {
     #{$prefix}transform: perspective($perspect) translateZ(100px ) rotateY(190deg) scale(1);
-    #{$prefix}animation-timing-function: ease-in;
-  }
+    #{$prefix}animation-timing-function: ease-in; }
   80% {
     #{$prefix}transform: perspective($perspect) rotateY(360deg) scale(.95);
-    #{$prefix}animation-timing-function: ease-in;
-  }
+    #{$prefix}animation-timing-function: ease-in; }
   100% {
     #{$prefix}transform: perspective($perspect) scale(1);
-    #{$prefix}animation-timing-function: ease-in;
-  }
+    #{$prefix}animation-timing-function: ease-in; }
 },{
   // !import 可以再声明中，但是在mcss中无法传入函数(它不是一个值), 这里我们用Text转义
   $backface-visibility:  visible t('!important');
@@ -199,27 +200,174 @@ $-rotate = ($direct, $deg){
 }
 // flipIn
 // ---------------
-$-generate(flipIn, ($prefix, $direct = x){
-  $prefix = $prefix && ('-' + $prefix + '-') || '';
-
+$flipInBlock = ($prefix, $direct){
   0% {
       #{$prefix}transform: perspective(400px) $-rotate($direct, 90deg);
-      opacity: 0;
-  }
+      opacity: 0; }
   40% {
-      #{$prefix}transform: perspective(400px) $-rotate($direct, -10deg);
-  }
+      #{$prefix}transform: perspective(400px) $-rotate($direct, -10deg); }
   70% {
-      #{$prefix}transform: perspective(400px) $-rotate($direct, 10deg);
-  }
+      #{$prefix}transform: perspective(400px) $-rotate($direct, 10deg); }
   100% {
       #{$prefix}transform: perspective(400px) $-rotate($direct, 0deg);
-      opacity: 1;
-  }
+      opacity: 1; }
+
+}
+
+$-generate(flipInX, ($prefix){
+  $flipInBlock($prefix, x);
 }, {
+  $backface-visibility:  visible t('!important');
+});
+
+$-generate(flipInY, ($prefix){
+  $flipInBlock($prefix, y);
+}, {
+  $backface-visibility:  visible t('!important');
+});
+
+// FlipOut
+// -----------------------
+$flipOutBlock = ($prefix, $direct){
+  0% {
+        #{$prefix}transform: perspective(400px) $-rotate($direct, 0deg);
+        opacity: 1; }
+  100% {
+        #{$prefix}transform: perspective(400px) $-rotate($direct, 90deg);
+        opacity: 0; }
+}
+
+// X
+$-generate(flipOutX, ($prefix){
+  $flipOutBlock($prefix, x);
+},{
+    $backface-visibility:  visible t('!important');
+});
+
+// Y
+$-generate(flipOutY, ($prefix){
+  $flipOutBlock($prefix, y);
+},{
+    $backface-visibility:  visible t('!important');
+});
+
+
+
+// FadeIn
+
+$-generate(fadeIn, ($prefix){
+  0% {opacity: 0}
+  100% {opacity: 1}
+});
+
+$-generate(fadeOut, ($prefix){
+  0% {opacity: 1}
+  100% {opacity: 0}
+});
+
+$-generate(fadeInX, ($prefix, $offset = 30px){
+  0% {opacity: 0; #{$prefix}transform: translateX($offset); }
+  100% {opacity: 1; #{$prefix}transform: translateX(0); }
+});
+$-generate(fadeInY, ($prefix, $offset = 30px){
+  0% {opacity: 0; #{$prefix}transform: translateY($offset); }
+  100% {opacity: 1; #{$prefix}transform: translateY(0); }
+});
+
+$-generate(fadeOutX, ($prefix, $offset = 30px){
+  0% {opacity: 1; #{$prefix}transform: translateX(0); }
+  100% {opacity: 0; #{$prefix}transform: translateX($offset); }
+});
+
+$-generate(fadeOutY, ($prefix, $offset = 30px){
+  0% {opacity: 1; #{$prefix}transform: translateY(0); }
+  100% {opacity: 0; #{$prefix}transform: translateY($offset); }
+});
+
+
+// $bounce($height)
+// ------------------
+$-generate(bounce, ($prefix, $height){
+
+  0%, 20%, 50%, 80%, 100% {#{$prefix}transform: translateY(0);}
+  40% {#{$prefix}transform: translateY(-$height);}
+  60% {#{$prefix}transform: translateY(-$height / 2);}
+});
+
+$-generate(bounceIn, ($prefix){
+
+  0% {opacity: 0; #{$prefix}transform: scale(.3)}
+  50% {opacity: 1; #{$prefix}transform: scale(1.05)}
+  70% {#{$prefix}transform: scale(.9)}
+  100% {#{$prefix}transform: scale(1)}
 
 });
 
-$-generate(flipOut, ($prefix){
+$-generate(bounceInY, ($prefix, $offset=1000px){
+  0% {opacity: 0; #{$prefix}transform: translateY($offset)}
+  60% {opacity: 1; #{$prefix}transform: translateY(-30px)}
+  80% {#{$prefix}transform: translateY(10px)}
+  100% {#{$prefix}transform: translateY(0)}
+});
+$-generate(bounceInY, ($prefix, $offset=1000px){
+  0% {opacity: 0; #{$prefix}transform: translateX($offset)}
+  60% {opacity: 1; #{$prefix}transform: translateX(-30px)}
+  80% {#{$prefix}transform: translateX(10px)}
+  100% {#{$prefix}transform: translateX(0)}
+});
+// $bounceOut
+// -----------------------
+$-generate(bounceOut, ($prefix){
+  0% {#{$prefix}transform: scale(1) }
+  25% {#{$prefix}transform: scale(.95) }
+  50% {opacity: 1; #{$prefix}transform: scale(1.1) }
+  100% {opacity: 0; #{$prefix}transform: scale(.3) }
 
 });
+
+// $bounceOutY
+// -----------------------
+$-generate(bounceOutY, ($prefix, $offset=1000px){
+  0% {#{$prefix}transform: translateY(0); }
+  20% {opacity: 1; #{$prefix}transform: translateY(20px); }
+  100% {opacity: 0; #{$prefix}transform: translateY($offset); }
+});
+
+// $bounceOutX
+// -----------------------
+$-generate(bounceOutX, ($prefix, $offset=1000px){
+  0% {#{$prefix}transform: translateX(0); }
+  20% {opacity: 1; #{$prefix}transform: translateX(20px); }
+  100% {opacity: 0; #{$prefix}transform: translateX($offset); }
+});
+
+
+
+$-generate(rotateIn, ($prefix, $start-deg= -200deg, $start-scale = 1.2){
+  0% {
+    #{$prefix}transform-origin: center center;
+    #{$prefix}transform: rotate($start-deg) scale($start-scale);
+    opacity: 0;
+  }
+  100% {
+    #{$prefix}transform-origin: center center;
+    #{$prefix}transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+});
+
+$-generate(rotateOut, ($prefix, $end-deg= -200deg, $end-scale= 0.8){
+  0% {
+    #{$prefix}transform-origin: center center;
+    #{$prefix}transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    #{$prefix}transform-origin: center center;
+    #{$prefix}transform: rotate($end-deg) scale($end-scale);
+    opacity: 0;
+  }
+});
+
+
+

@@ -144,13 +144,13 @@ $image-rendering = ($mode = optimizeQuality){
 
 $keyframes = ($name, $block){
     @-webkit-keyframes $name{
-        $block(webkit);
+        $block(-webkit-);
     } 
     @-moz-keyframes $name{
-        $block(moz);
+        $block(-moz-);
     } 
     @-o-keyframes $name{
-        $block(o);
+        $block(-o-);
     } 
     @keyframes $name{
         $block();
