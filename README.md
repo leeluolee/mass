@@ -41,22 +41,15 @@ mcss --include path/to/mass_dir
 ```
 
 
-## mass的文件列表
-主要是libs与mass两个目录
+## 文档目录
 
-``` 
-├─ libs/                 —— 放置内置函数扩展 (未做)
-│   └──...
-├─ mass/                 —— 放置mcss文件的目录最好与库同名
-│   ├─ css3.mcss        —— 提供海量的css3的兼容处理(由于mcss的强大特性，其实没写多少代码)
-│   ├─ reset.mcss       —— 提供多种reset函数, nec-reset, normalize ... etc
-│   ├─ hepler.mcss      —— 提供一些常用帮助函数，比如$clearfix等等
-│   ├─ layout.mcss      —— 提供一些布局相关函数
-│   ├─ functions.mcss   —— 一些函数集合, mass的每个文件都或多或少依赖了这个函数
-│   ├─ effect.mcss      —— 提供一些常用的animation mixin, 并提供参数控制.
-│   └─ index.mcss       —— 以上所有子文件的入口文件, 你偷懒可以只引入这个文件
-└─ ....
-```
+1. [__css3.mcss__](#css3)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss)      —— 提供海量的css3的兼容处理(由于mcss的强大特性，其实没写多少代码)
+2. [__reset.mcss__](#reset)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/reset.mcss)       —— 提供多种reset函数, nec-reset, normalize ... etc
+3. [__helper.mcss__](#helper)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/helper.mcss)      —— 提供一些常用帮助函数，比如$clearfix等等
+4. [__layout.mcss__](#layout)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/layout.mcss)      —— 提供一些布局相关函数
+5. [__effect.mcss__](#effect)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/effect.mcss)      —— 提供一些常用的animation mixin, 并提供参数控制.
+6. [__functions.mcss__](#functions)[(源码)](https://github.com/leeluolee/mass/blob/master/mass/functions.mcss)   —— 一些函数集合, mass的每个文件都或多或少依赖了这个函数
+7. index.mcss[(源码)](https://github.com/leeluolee/mass/blob/master/mass/index.mcss)      —— 以上所有子文件的入口文件, 你偷懒可以只引入这个文件
 
 __需要注意的是__ : mass中的所有文件都可以单独引入, 已经处理好了依赖关系。
 
@@ -65,7 +58,8 @@ __需要注意的是__ : mass中的所有文件都可以单独引入, 已经处�
 ## 使用文档
 源码请看对应文件
 
-###  css3
+<a name="css3"></a>
+### 1. [css3.mcss](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss)
 
 css3主要是帮助我们无痛的使用css3特性,
 
@@ -96,10 +90,10 @@ __Outport__
 }
 ```
 
-其它例如`$box-sizing`之类的也是一致,详细列表请看[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mcss/css3.mcss#L12) 的 `$prefix-properties`变量, __你一眼就能看懂, 并发现mcss相较于其他预处理的巨大优势__
+其它例如`$box-sizing`之类的也是一致,详细列表请看[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss#L12) 的 `$prefix-properties`变量, __你一眼就能看懂, 并发现mcss相较于其他预处理的巨大优势__
 
 
-__所有简单vendor prefixr 的参数与原样式一致 __
+__所有简单vendor prefixr 的参数与原样式一致__
 
 
 #### $border-radius($radius, $direction)
@@ -127,14 +121,6 @@ __Outport__
 }
 ```
 
-#### $radial-gradient = ($color-stops...) 
-圆形渐变, 目前只支持
-
-__Argument__
-
-__Exmaple__
-
-__Outport__
 
 
 #### $linear-gradient = ($pos, $color-stops...)
@@ -146,8 +132,19 @@ __Exmaple__
 
 __Outport__
 
+
+#### $radial-gradient = ($color-stops...) 
+圆形渐变, 目前只支持
+
+__Argument__
+
+__Exmaple__
+
+__Outport__
+
+
 #### $keyframes = ($name, $block)
-兼容的keyframs写法, 与@keyframes对应, mass同时利用它封装了[`effect.mcss`](https://github.com/leeluolee/mass/blob/master/mcss/effect.mcss)
+兼容浏览器的keyframs写法, 与@keyframes对应, mass同时利用它封装了[`effect.mcss`](https://github.com/leeluolee/mass/blob/master/mcss/effect.mcss)
 
 __Arguments__ 
 1. $name  —— keyframes 名称
@@ -157,11 +154,13 @@ __Example__
 
 ```
 $block =  ($prefix){
+    /* 运算级与js一致， 所以利于逻辑符可以减少一些@if 的书写*/
+    $prefix = $prefix && ('-' + $prefix + '-') || '';
     20%{
-        left: 20px;
+        #{$prefix}transform: scale(2.0,2.0);
     }
     to{
-        left: 40px;
+        #{$prefix}transform: scale(1.0,1.0);
     }
 }
 
@@ -171,14 +170,38 @@ $keyframes(hello, $block);
 __Outport__
 
 ```css
-$keyframes(hello, {
-    20%{
-        left: 20px;
-    }
-    to{
-        left: 40px;
-    }
-});
+@-webkit-keyframes hello{
+  20%{
+    -webkit-transform:scale(2,2);
+  }
+  to{
+    -webkit-transform:scale(1,1);
+  }
+}
+@-moz-keyframes hello{
+  20%{
+    -moz-transform:scale(2,2);
+  }
+  to{
+    -moz-transform:scale(1,1);
+  }
+}
+@-o-keyframes hello{
+  20%{
+    -o-transform:scale(2,2);
+  }
+  to{
+    -o-transform:scale(1,1);
+  }
+}
+@keyframes hello{
+  20%{
+    transform:scale(2,2);
+  }
+  to{
+    transform:scale(1,1);
+  }
+}
 ```
 
 
@@ -254,6 +277,7 @@ __输出__
   background:#fff;
   text-transform:uppercase;
 }
+```
 
 #### $hidpi = ($block, $ratio = 1.5)
 由于处理高dpi的media query的兼容性问题
@@ -296,12 +320,45 @@ __Outport__
 ```
 
 
+<a name="reset"></a>
+### 2. [reset.mcss](https://github.com/leeluolee/mass/blob/master/mass/reset.mcss)
 
-### Helper.mcss
+
+
+<a name="helper"></a>
+### 3. [helper.mcss](https://github.com/leeluolee/mass/blob/master/mass/helper.mcss)
 helper主要提供一些类似 $clearfix的帮助函数,帮助处理一些兼容性问题, 或者集合缩写
 
-#### $display :
+#### $clearfix
+清除浮动, 采用的是[NEC](http://nec.netease.com)的方式, 这应该是最常用的mixin
+
+__Example__
+```
+.container{
+  $clearfix();
+}
+```
+
+__Outport__
+```css
+.container{
+  *zoom:1;
+}
+.container:before,.container:after{
+  display:table;
+  content:"";
+  line-height:0;
+}
+.container:after{
+  clear:both;
+}
+```
+
+
+#### $display($type)
 display处理了有关display的兼容性问题, 比如inline-box, box.
+
+__Example__:
 
 ```css
 body{
@@ -312,10 +369,51 @@ p{
 }
 
 ```
-输出
+
+__Outport__:
+
+```
+body{
+  display:inline-block;
+  vertical-align:baseline;
+  zoom:1;
+  *display:inline;
+  *vertical-align:auto;
+}
+p{
+  display:-webkit-box;
+  display:-moz-box;
+  display:box;
+}
+```
 
 
 
+<a name="layout"></a>
+### 4. [layout.mcss](https://github.com/leeluolee/mass/blob/master/mass/layout.mcss)
+
+
+
+
+<a name="effect"></a>
+### 5. [effect.mcss](https://github.com/leeluolee/mass/blob/master/mass/effect.mcss)
+
+
+
+<a name="functions"></a>
+### 6. [functions.mcss](https://github.com/leeluolee/mass/blob/master/mass/functions.mcss)
+
+
+
+
+<a name="index"></a>
+### 7. [index.mcss](https://github.com/leeluolee/mass/blob/master/mass/index.mcss)
+
+可以调用以上所有函数
+
+
+
+## Changelog
 
 
 
