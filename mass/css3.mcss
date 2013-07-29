@@ -74,7 +74,6 @@ $prefix-properties =
     filter (moz webkit);
 
 
-
 @for $vendors, $property in $prefix-properties {
     define('$'+$property, $prefixr($property, null, $vendors));
 }
@@ -107,6 +106,27 @@ $border-radius = ($radius, $direction){
 //     $border-radius: 5px, top left;
 // }
 // ```
+
+$transition = (){
+  -webkit-transition: $transition-prop-prefix($arguments, -webkit-);
+  -moz-transition: $transition-prop-prefix($arguments, -moz-);
+  transition: $arguments;
+}
+
+$transition-property = (){
+  -webkit-transition-property: $transition-prop-prefix($arguments, -webkit-);
+  -moz-transition-property: $transition-prop-prefix($arguments, -moz-);
+  transition-property: $arguments;
+}
+
+// __example__ :
+// ```
+body{
+    $transition: transform .1s;
+    $transition-property: transform, pespective, all;
+}
+
+
 
 
 //warning: the block 's context ,if passed a func

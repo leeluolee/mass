@@ -14,6 +14,7 @@ $if = ($test, $then, $alt){
     @return $alt;
 }
 
+
 /**
  * just like object in javascript, in mcss try use valueslist to fake a object
  * and use $map to get the value
@@ -134,9 +135,18 @@ $get-stop-color = ($color-stop){
 }
 
 
-$transition-prefix = ($props){
-  
+$transition-prop-test = 'transform|perspective|transform-origin';
+$transition-prop-prefix = ($props, $prefix){
+  $type = typeof($props);
+  @if $type == 'valueslist'{
+    $res = ();
+    @for $prop of $props{
+      push($res, $transition-prop-prefix($prop, $prefix));
+    }
+    @return $res;
+  }
+  @if $type == 'values'{
+    $props = t($props);
+  }
+  @return $if(match($transition-prop-test, $props), $prefix + $props, $props);
 }
-
-
-
