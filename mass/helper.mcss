@@ -1,4 +1,5 @@
 @import 'functions.mcss';
+
 $size = ($width, $height){
     $height ?= $width;
     height: $height; 
@@ -55,12 +56,6 @@ $border = ($color){
    border: $if(typeof($color) == 'color', 1px solid $color, $color); 
 }
 
-// fix 3px margin
-$float = ($direction = left ){
-    float: $direction;
-    display: inline;
-}
-
 
 // 
 $txt-ellipsis = ($nowrap = true){
@@ -90,8 +85,8 @@ $lh = ($height){
 
 // fixed-container
 $fix-container = ($width = 1000px){
-    width: $width;
     $clearfix();
+    width: $width;
     margin-left: auto;
     margin-right: auto;
 }
@@ -114,4 +109,20 @@ $display = ($name){
 //     $display: inline-block;
 //     $display: box;
 // }
+
+$font-face = ($name, $path, $block, $support-svg = false){
+    $links = 
+        url('#{$path}.eot?#iefix') format('embedded-opentype'),
+        url('#{$path}.woff') format('woff'),
+        url('#{$path}.ttf') format('truetype');
+    @if $support-svg {
+        push($links, url('#{$path}.svg##{$name}') format('svg'))
+    }
+    @font-face {
+        font-family: $name;
+        src: url('#{$path}.eot');
+        src: $links;
+        $block();
+    }
+}
 

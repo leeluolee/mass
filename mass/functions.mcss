@@ -83,6 +83,20 @@ $opposite = ($value){
   @return $map($ops-map, $value); 
 }
 
+$side2corner = ($side){
+  @if $side == left{
+    @return top-left, bottom-left;
+  }
+  @if $side == right{
+    @return top-right, bottom-right;
+  }
+  @if $side == top{
+    @return top-left, top-right;
+  }
+  @if $side == bottom{
+    @return bottom-left, bottom-right;
+  }
+}
 
 $prefix-transition = ($properties){
   @if typeof($properties) == 'valueslist' {
@@ -113,13 +127,16 @@ $linear-pos = ($pos){
 }
 
 $get-stop-color = ($color-stop){
-    @if is-list($color-stop){
-        @return index($color-stop, 0)
-    }
-    @return $color-stop;
+  @if is-list($color-stop){
+      @return index($color-stop, 0)
+  }
+  @return $color-stop;
 }
 
 
+$transition-prefix = ($props){
+  
+}
 
 
 

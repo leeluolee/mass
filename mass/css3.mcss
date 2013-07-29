@@ -84,14 +84,22 @@ $prefix-properties =
 // }
 
 
-
+//
 $border-radius = ($radius, $direction){
-    @if !$direction{
-        $join = '';
-    }@else{
-        $join = '-' + join($direction);
-    }
-    $prefixr(border#{$join}-radius, $radius, moz)
+  @if $direction{
+      // top
+      @if typeof($direction) == 'text'{
+        $direction = $side2corner($direction);
+      }@else{ // top left
+        $direction = join($direction);
+      }
+      @for $direct of $direction{
+        $prefixr(border-#{$direct}-radius, $radius, moz)
+      }
+  }@else{
+    $prefixr(border-radius, $radius ,moz);
+  }
+    
 }
 // __example__ :
 // ```
