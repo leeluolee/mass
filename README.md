@@ -90,78 +90,56 @@ __Outport__
 }
 ```
 
-其它例如`$box-sizing`之类的也是一致,详细列表[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss#L12), 下面同时也是mass完整实现(除了transition、transition-property需要额外处理之外，其它都是利用下面的代码实现);
+其它例如`$box-sizing`之类的也是一致,详细列表[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss#L12)
 
-```
-$prefix-properties = 
-    // transition
-    // transition (webkit moz),
-    transition-delay (webkit moz),
-    // transition-property (webkit moz),
-    transition-duration (webkit moz),
-    transition-timing-function (webkit moz),
-
-
-    //animation
-    animation (webkit moz), 
-    animation-delay (webkit moz), 
-    animation-name (webkit moz), 
-    animation-direction (webkit moz), 
-    animation-duration (webkit moz), 
-    animation-fill-mode (webkit moz), 
-    animation-iteration-count (webkit moz), 
-    animation-timing-function (webkit moz), 
-    //column 
-    columns (webkit moz),
-    column-count (webkit moz),
-    column-gap (webkit moz),
-    column-fill (webkit moz),
-    column-rule (webkit moz),
-    column-rule-color (webkit moz),
-    column-rule-style (webkit moz),
-    column-rule-width (webkit moz),
-    column-span (webkit moz),
-    column-width (webkit moz),
-
-    // display-box (mannul create)
-    box-orient (webkit moz),
-    box-sizing (webkit moz),
-    box-pack (webkit moz),
-    box-align (webkit moz),
-    box-direction (webkit moz),
-    box-lines (webkit moz),
-    box-ordinal-group (webkit moz),
-    box-flex (webkit moz),
-    box-flex-group (webkit moz),
-    box-shadow (webkit moz),
-
-
-    // transform
-    transform null,
-    transform-origin null,
-    transform-style null,
-    perspective (webkit moz),
-    perspective-origin (webkit moz),
-
-    //other
-    appearance (webkit moz ms o),
-    backface-visibility (webkit moz),
-    background-clip webkit,
-    background-origin webkit,
-    background-size webkit,
-    border-box (webkit moz),
-    box-shadow webkit,
-    user-select (webkit moz ms),
-    hyphens (epub moz ms),
-
-    // https://developer.mozilla.org/en-US/docs/Web/CSS/filter
-    filter (moz webkit);
-
-
-@for $vendors, $property in $prefix-properties {
-    define('$'+$property, $prefixr($property, null, $vendors));
-}
-```
+* transition (webkit moz),
+* transition-delay (webkit moz),
+* transition-property (webkit moz),
+* transition-duration (webkit moz),
+* transition-timing-function (webkit moz),
+* animation (webkit moz), 
+* animation-delay (webkit moz), 
+* animation-name (webkit moz), 
+* animation-direction (webkit moz), 
+* animation-duration (webkit moz), 
+* animation-fill-mode (webkit moz), 
+* animation-iteration-count (webkit moz), 
+* animation-timing-function (webkit moz), 
+* columns (webkit moz),
+* column-count (webkit moz),
+* column-gap (webkit moz),
+* column-fill (webkit moz),
+* column-rule (webkit moz),
+* column-rule-color (webkit moz),
+* column-rule-style (webkit moz),
+* column-rule-width (webkit moz),
+* column-span (webkit moz),
+* column-width (webkit moz),
+* box-orient (webkit moz),
+* box-sizing (webkit moz),
+* box-pack (webkit moz),
+* box-align (webkit moz),
+* box-direction (webkit moz),
+* box-lines (webkit moz),
+* box-ordinal-group (webkit moz),
+* box-flex (webkit moz),
+* box-flex-group (webkit moz),
+* box-shadow (webkit moz),
+* transform null,
+* transform-origin null,
+* transform-style null,
+* perspective (webkit moz),
+* perspective-origin (webkit moz),
+* appearance (webkit moz ms o),
+* backface-visibility (webkit moz),
+* background-clip webkit,
+* background-origin webkit,
+* background-size webkit,
+* border-box (webkit moz),
+* box-shadow webkit,
+* user-select (webkit moz ms),
+* hyphens (epub moz ms),
+* filter (moz webkit);
 
 __所有以上css3的参数与原样式一致__
 
@@ -176,11 +154,8 @@ __Arguments__
 __Example__
 
 ```
-@import 'https://rawgithub.com/leeluolee/mass/master/mcss/index.mcss';
-
 .radius{
   $border-radius: 3px;
-  $border-radius: 3px, top left;
 }
 .radius-corner{
   $border-radius: 3px, top left;
@@ -193,11 +168,19 @@ __Example__
 __Outport__
 
 ```
-.u-btn{
+.radius{
   -moz-border-radius:3px;
   border-radius:3px;
+}
+.radius-corner{
   -moz-border-top-left-radius:3px;
   border-top-left-radius:3px;
+}
+.radius-side{
+  -moz-border-top-left-radius:3px;
+  border-top-left-radius:3px;
+  -moz-border-top-right-radius:3px;
+  border-top-right-radius:3px;
 }
 ```
 
