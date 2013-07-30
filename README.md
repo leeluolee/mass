@@ -1,7 +1,7 @@
 ## mass 
 mass a css toolbox based on [ __mcss(The new css preprocessor)__ ](https://github.com/leeluolee/mcss)
 
-mass提供大量的函数, 同时也是mcss的官方使用示例.
+mass提供大量的函数, 同时也是mcss的官方使用示例. 
 
 ## 使用
 
@@ -148,6 +148,7 @@ __所有以上css3的参数与原样式一致__
 `$border-radius` 除了处理前缀, 可以传入额外参数控制位置, 
 
 __Arguments__
+
 1. $radius —— 圆角半径
 2. $direction —— (可选) 圆角的位置 可以是角(top left) 也可以是边(top)
 
@@ -186,38 +187,85 @@ __Outport__
 
 
 
-#### $linear-gradient = ($pos, $color-stops...)
+#### $linear-gradient = ($direct, $color-stops...)
 线型渐变
 
 __Argument__
 
+1. `$direct`[可以选默认top] : 从哪个方向开始  如 `top left`，`top` 或者以哪个角度 如 45deg 等;
+2. `$color-staops`: 颜色值列表, 可以加入百分比或长度 如 #fff 50%, #ccc 20px , color-stop可以有无限个;
+
+__要点__
+
+0. 总体就是参数与规范类似
+1. 默认会mix 最末和最先的颜色进行mix 作为ie低版本的fallback
+2. 如果是垂直或者水平渐变，比如 top bottom right 和 left 会生成ie下的滤镜形式，其它角度则不生成
+
 __Exmaple__
 
+```
+$primary = #f6ffc1;
+.m-top{
+  /* l-adjust 是调节亮度 */
+  $linear-gradient: right, $primary , l-adjust($primary, 10%);
+}
+```
+
 __Outport__
+```css
+.m-top{
+  background-color:#faffdb;
+  background-image:-webkit-linear-gradient(right,#f6ffc1,#fdfff4);
+  background-image:-moz-linear-gradient(right,#f6ffc1,#fdfff4);
+  background-image:-ms-linear-gradient(right,#f6ffc1,#fdfff4);
+  background-image:-o-linear-gradient(right,#f6ffc1,#fdfff4);
+  background-image:linear-gradient(to left,#f6ffc1,#fdfff4);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdfff4', endColorstr='#f6ffc1', GradientType=1) \9;
+}
+```
 
 
 #### $radial-gradient = ($color-stops...) 
-圆形渐变, 目前只支持
+圆形渐变, 与线性渐变类似，不过这里color-stop的扩散方向是从圆点到外圈，
 
 __Argument__
 
+1. `$color-stops`: 从内向外的圆颜色层级, 一样可以加入百分比或长度值控制比例
+
 __Exmaple__
+```
+.m-top{
+  $radial-gradient: #aaa, #ccc 20%, #ddd 80%, #eee;
+}
+```
 
 __Outport__
+```
+.m-top{
+  background-color:#ccc;
+  background-image:-webkit-radial-gradient(ellipse,#aaa,#ccc 20%,#ddd 80%,#eee);
+  background-image:-moz-radial-gradient(ellipse,#aaa,#ccc 20%,#ddd 80%,#eee);
+  background-image:-ms-radial-gradient(ellipse,#aaa,#ccc 20%,#ddd 80%,#eee);
+  background-image:-o-radial-gradient(ellipse,#aaa,#ccc 20%,#ddd 80%,#eee);
+  background-image:radial-gradient(ellipse,#aaa,#ccc 20%,#ddd 80%,#eee);
+  background-repeat:no-repeat;
+}
+```
 
 
 #### $keyframes = ($name, $block)
 兼容浏览器的keyframs写法, 与@keyframes对应, mass同时利用它封装了[`effect.mcss`](https://github.com/leeluolee/mass/blob/master/mcss/effect.mcss)
 
 __Arguments__ 
+
 1. $name  —— keyframes 名称
 2. $block —— 传入的block函数, 这个函数接受的第一个参数是前缀, 大部分情况你不需要这个参数, 比如 `-o-`, `-webkit-`
+
 
 __Example__
 
 ```
 $block =  ($prefix){
-    /* 运算级与js一致， 所以利于逻辑符可以减少一些@if 的书写*/
     20%{
         #{$prefix}transform: scale(2.0,2.0);
     }
@@ -384,15 +432,39 @@ __Outport__
 
 <a name="reset"></a>
 ### 2. [reset.mcss](https://github.com/leeluolee/mass/blob/master/mass/reset.mcss)
+目前提供`$reset-normalize` 和 `$nec-reset` 分别提供不同功能层级的reset需要,分别Copy自[NEC](http://nec.netease.com/framework/css-reset.html) 与 [normalize](https://github.com/necolas/normalize.css/tree/v1)
 
+__Exmaple__
+
+```
+@import 'mass/reset.mcss'
+$reset-nec();
+// or $reset-normalize();
+
+```
+
+或者, 自动设置配置变量`$include-reset` 进行对应reset的include
+
+```
+$include-reset = nec;
+@import 'mass/reset.mcss'
+```
+
+
+__Tips__
+
+除了使用函数之外, 你可以在include 进reset 之前 设置 $ ?= false;
 
 
 <a name="helper"></a>
 ### 3. [helper.mcss](https://github.com/leeluolee/mass/blob/master/mass/helper.mcss)
+
 helper主要提供一些类似 $clearfix的帮助函数,帮助处理一些兼容性问题, 或者集合缩写
 
+
+
 #### $clearfix
-清除浮动, 采用的是[NEC](http://nec.netease.com)的方式, 这应该是最常用的mixin
+清除浮动, 这应该是最常用的mixin
 
 __Example__
 ```
@@ -418,6 +490,7 @@ __Outport__
 
 
 #### $display($type)
+
 display处理了有关display的兼容性问题, 比如inline-box, box.
 
 __Example__:
@@ -454,19 +527,109 @@ p{
 <a name="layout"></a>
 ### 4. [layout.mcss](https://github.com/leeluolee/mass/blob/master/mass/layout.mcss)
 
+layout处理一些常见的布局问题 , 以及栅格布局生成等功能, 跟reset一样，一般就是在页面的初始化搭建中使用. 
+
+
+#### 1. $fixed-layout($widths..., $margin = 0px)
+
+具体宽度的布局生成, 可以传入`auto` 代表这是个n栏自适应的布局
+
+
+#### 2. $fixed-grid()
+
+固定布局(基于px)的栅格系统生成
+
+
+#### 3. $fluid-grid()
+
+流式布局栅格系统生成(基于%)
+
+
+#### 4. $elastic-grid()
+
+弹性布局栅格系统生成(基于em)
+
 
 
 
 <a name="effect"></a>
 ### 5. [effect.mcss](https://github.com/leeluolee/mass/blob/master/mass/effect.mcss)
 
+__参数配置__ 
+1. `$effect-outport` —— 是否输出内置的几种效果, 默认为不输出
 
+__effect.mcss__ 中的所有效果都是基于以下两个函数`$effect`, `$effect-func`.
+它们参数完全一致，区别是`$effect-func` 只在全局注册对应的函数，而`$effect`是直接输出
+
+__注意__ 
+@import effect 会引入几个样式
+
+
+#### $effect($name, $block, $with-class)
+
+
+__Arguments__
+
+1. $name[text]         keyframes的名字以及输出的className
+2. $block[func]        keyframesblock，接受代表`-o-`等前缀的参数
+3. $with-class[func]—— 可选，代表输出类要做的额外样式
+
+解决keyframes的跨浏览器生成, 并生成对应的class.
+
+__Example__
+
+```
+$effect(flip, ($prefix){
+  0% {
+    #{$prefix}transform: perspective(300px) rotateY(0);
+    #{$prefix}animation-timing-function: ease-out; }
+  40% {
+    #{$prefix}transform: perspective(300px) translateZ(100px) rotateY(170deg);
+    #{$prefix}animation-timing-function: ease-out; }
+  50% {
+    #{$prefix}transform: perspective(300px) translateZ(100px ) rotateY(190deg) scale(1);
+    #{$prefix}animation-timing-function: ease-in; }
+  80% {
+    #{$prefix}transform: perspective(300px) rotateY(360deg) scale(.95);
+    #{$prefix}animation-timing-function: ease-in; }
+  100% {
+    #{$prefix}transform: perspective(300px) scale(1);
+    #{$prefix}animation-timing-function: ease-in; }
+},{
+  $backface-visibility:  visible;
+});
+```
+
+__Outport__
+```
+
+```
+
+
+#### $effect-func($name, $block, $with-class)
+
+`$effect-func` 相当于是把`$effect`的动作延迟到了函数调用时发生
 
 <a name="functions"></a>
 ### 6. [functions.mcss](https://github.com/leeluolee/mass/blob/master/mass/functions.mcss)
 
+这里只列出公有函数
+
+#### $if( $test, $value, $value2)
+
+如果test通过 则返回 $value, 否则返回$value2, __是的 仅仅只是用来减少@if @else的书写__ 
+
+body{
+
+}
+
+#### $map($valueslist, $key)
 
 
+
+### 7. [var.mcss](https://github.com/leeluolee/mass/blob/master/mass/var.mcss)
+
+集中的参数控制, 所有单独的对外文件都依赖它
 
 <a name="index"></a>
 ### 7. [index.mcss](https://github.com/leeluolee/mass/blob/master/mass/index.mcss)

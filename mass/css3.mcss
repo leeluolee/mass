@@ -221,7 +221,6 @@ $placeholder = ($block){
 // }
 
 
-
 $linear-gradient = ($pos, $color-stops...){
   $type-pos = typeof($pos);
   $deg = null;
