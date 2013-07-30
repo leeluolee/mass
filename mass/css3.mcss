@@ -242,24 +242,25 @@ $linear-gradient = ($pos, $color-stops...){
   $specs = $color-stops;
   $other = slice($color-stops);
   $gradient-type = null;
+  $revert = false;
   @if $deg != null {
      unshift($specs, $deg);
      unshift($other, $deg);
-     @if $deg == 0deg{
-        $gradient-type = 1;
-     }@elseif $deg == -90deg{
-        $type = 0; 
-     }
   }@elseif($pos != null){
      unshift($specs, to $opposite($pos));
      unshift($other, $pos);
-     @if $pos == left{
+     @if $pos == right || $pos == bottom{
+      $revert = true;
+     }
+     @if $pos == left || $pos == right {
         $gradient-type = 1;
-     }@elseif $pos == top{
+
+     }@elseif $pos == top || $pos == bottom{
         $gradient-type = 0;
      }
   }@else{ // default top -> bottom
      $gradient-type = 0;
+     $revert = true;
   }
   background-color: $fallback; //fallback
   background-image: -webkit-linear-gradient($other); // chrome 2+ safari 4+
@@ -269,9 +270,27 @@ $linear-gradient = ($pos, $color-stops...){
   background-image: linear-gradient($specs); //spec
   // @REMOVE hack for lt ie9 
   @if $gradient-type != null{
-    filter: t("progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=%s)" % (argb($start), argb($end), $gradient-type)) \9;
+    @if $revert {
+      $-start = argb($end);
+      $-end = argb($start);
+    }@else{
+      $-end = argb($end);
+      $-start = argb($start);
+    }
+    filter: t("progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=%s)" % ($-start, $-end, $gradient-type)) \9;
   }
 }
+
+// __Example__:
+// body{
+//   $linear-gradient: top , #ccc, #ddd 50%;
+//   $linear-gradient: bottom , #ccc, #ddd 50%;
+//   $linear-gradient: left , #ccc, #ddd 50%;
+//   $linear-gradient: right , #ccc, #ddd 50%;
+//   $linear-gradient: #ccc, #ddd 50%;
+//   $linear-gradient: 30deg ,#ccc, #ddd 50%;
+// }
+
 
 
 $radial-gradient = ($color-stops...) {
