@@ -1,4 +1,4 @@
-@import 'functions';
+@import 'reset';
 @import 'helper';
 @import 'css3';
 @import 'layout';

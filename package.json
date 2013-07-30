@@ -6,6 +6,6 @@
   "dependencies": {
     "canvas": "*",
     "commander": "*",
-    "mcss": "0.1.0"
+    "mcss": "*"
   }
 }

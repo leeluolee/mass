@@ -90,23 +90,103 @@ __Outport__
 }
 ```
 
-其它例如`$box-sizing`之类的也是一致,详细列表请看[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss#L12) 的 `$prefix-properties`变量, __你一眼就能看懂, 并发现mcss相较于其他预处理的巨大优势__
+其它例如`$box-sizing`之类的也是一致,详细列表[`css3.file:L12`](https://github.com/leeluolee/mass/blob/master/mass/css3.mcss#L12), 下面同时也是mass完整实现(除了transition、transition-property需要额外处理之外，其它都是利用下面的代码实现);
+
+```
+$prefix-properties = 
+    // transition
+    // transition (webkit moz),
+    transition-delay (webkit moz),
+    // transition-property (webkit moz),
+    transition-duration (webkit moz),
+    transition-timing-function (webkit moz),
 
 
-__所有简单vendor prefixr 的参数与原样式一致__
+    //animation
+    animation (webkit moz), 
+    animation-delay (webkit moz), 
+    animation-name (webkit moz), 
+    animation-direction (webkit moz), 
+    animation-duration (webkit moz), 
+    animation-fill-mode (webkit moz), 
+    animation-iteration-count (webkit moz), 
+    animation-timing-function (webkit moz), 
+    //column 
+    columns (webkit moz),
+    column-count (webkit moz),
+    column-gap (webkit moz),
+    column-fill (webkit moz),
+    column-rule (webkit moz),
+    column-rule-color (webkit moz),
+    column-rule-style (webkit moz),
+    column-rule-width (webkit moz),
+    column-span (webkit moz),
+    column-width (webkit moz),
+
+    // display-box (mannul create)
+    box-orient (webkit moz),
+    box-sizing (webkit moz),
+    box-pack (webkit moz),
+    box-align (webkit moz),
+    box-direction (webkit moz),
+    box-lines (webkit moz),
+    box-ordinal-group (webkit moz),
+    box-flex (webkit moz),
+    box-flex-group (webkit moz),
+    box-shadow (webkit moz),
+
+
+    // transform
+    transform null,
+    transform-origin null,
+    transform-style null,
+    perspective (webkit moz),
+    perspective-origin (webkit moz),
+
+    //other
+    appearance (webkit moz ms o),
+    backface-visibility (webkit moz),
+    background-clip webkit,
+    background-origin webkit,
+    background-size webkit,
+    border-box (webkit moz),
+    box-shadow webkit,
+    user-select (webkit moz ms),
+    hyphens (epub moz ms),
+
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/filter
+    filter (moz webkit);
+
+
+@for $vendors, $property in $prefix-properties {
+    define('$'+$property, $prefixr($property, null, $vendors));
+}
+```
+
+__所有以上css3的参数与原样式一致__
 
 
 #### $border-radius($radius, $direction)
-`$border-radius` 除了处理前缀, 可以传入额外参数控制位置, 例如top left;
+`$border-radius` 除了处理前缀, 可以传入额外参数控制位置, 
+
+__Arguments__
+1. $radius —— 圆角半径
+2. $direction —— (可选) 圆角的位置 可以是角(top left) 也可以是边(top)
 
 __Example__
 
 ```
 @import 'https://rawgithub.com/leeluolee/mass/master/mcss/index.mcss';
 
-.u-btn{
+.radius{
   $border-radius: 3px;
   $border-radius: 3px, top left;
+}
+.radius-corner{
+  $border-radius: 3px, top left;
+}
+.radius-side{
+  $border-radius: 3px, top;
 }
 ```
 
@@ -148,14 +228,13 @@ __Outport__
 
 __Arguments__ 
 1. $name  —— keyframes 名称
-2. $block —— 传入的block函数, 这个函数接受的第一个参数是前缀, 大部分情况你不需要这个参数
+2. $block —— 传入的block函数, 这个函数接受的第一个参数是前缀, 大部分情况你不需要这个参数, 比如 `-o-`, `-webkit-`
 
 __Example__
 
 ```
 $block =  ($prefix){
     /* 运算级与js一致， 所以利于逻辑符可以减少一些@if 的书写*/
-    $prefix = $prefix && ('-' + $prefix + '-') || '';
     20%{
         #{$prefix}transform: scale(2.0,2.0);
     }

@@ -102,8 +102,14 @@ $border-radius = ($radius, $direction){
 }
 // __example__ :
 // ```
-// body{
-//     $border-radius: 5px, top left;
+// .radius{
+//   $border-radius: 3px;
+// }
+// .radius-corner{
+//   $border-radius: 3px, top left;
+// }
+// .radius-side{
+//   $border-radius: 3px, top;
 // }
 // ```
 
@@ -121,10 +127,10 @@ $transition-property = (){
 
 // __example__ :
 // ```
-body{
-    $transition: transform .1s;
-    $transition-property: transform, pespective, all;
-}
+// body{
+//     $transition: transform .1s;
+//     $transition-property: transform, pespective, all;
+// }
 
 
 
