@@ -287,9 +287,6 @@ $reset-normalize = {
         font-size: 80%;
     }
 
-    *
-     * Prevent `sub` and `sup` affecting `line-height` in all browsers.
-     
 
     sub,
     sup {
