@@ -1,3 +1,4 @@
+@import 'var';
 @import 'functions.mcss';
 
 $size = ($width, $height){
@@ -82,14 +83,6 @@ $lh = ($height){
     line-height: $height; 
 }
 
-
-// fixed-container
-$fix-container = ($width = 1000px){
-    $clearfix();
-    width: $width;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 // cross-browser display
 $display = ($name){

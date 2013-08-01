@@ -1,5 +1,4 @@
-
-$include-reset ?= false;
+@import 'var';
 
 $reset-nec = {
     html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
@@ -554,7 +553,8 @@ $reset-normalize = {
 @if $include-reset{
     @if t($include-reset) == normalize{
         $reset-normalize();
-    }@else{
+    }@else{ 
+    //其他非假值会引入nec
         $reset-nec();
     }
 }

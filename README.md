@@ -528,27 +528,232 @@ p{
 <a name="layout"></a>
 ### 4. [layout.mcss](https://github.com/leeluolee/mass/blob/master/mass/layout.mcss)
 
-layout处理一些常见的布局问题 , 以及栅格布局生成等功能, 跟reset一样，一般就是在页面的初始化搭建中使用. 
+layout处理一些常见的布局问题 , 以及栅格布局生成等功能, 目前只提供fixed-layout相关的mixin。 `$fixed-layout`、`$fixed-grid` 以及 `$fixed-container`
 
 
-#### 1. $fixed-layout($widths..., $margin = 0px)
+#### 1. $fixed-layout($col-widths, $gap = 0px, $prefix = 'col')
 
-具体宽度的布局生成, 可以传入`auto` 代表这是个n栏自适应的布局
+固定宽度的布局生成, 包括可以实现n栏自适应的布局
+
+__Arguments__
+
+1. $col-widths : 以空格分隔的宽度值， 可以有一个`auto`值，代表这栏是自适应的, 则这栏内部的`col-cnt`节点才是容器类
+
+2. $margin 没栏的间距
+
+3. 类名的前缀默认为 `col`, 即没栏的类名默认为`col-n`, 当某栏为自适应时，内部的容器类为`col-cnt`.
+
+__Exmpale__
+
+一个三栏中部自适应的例子
+
+```
+.l-1{
+  $fixed-layout: 200px auto 100px, 30px, g-mn;
+}
+
+```
+
+__Outport__
+
+```css
+.l-1{
+  *zoom:1;
+}
+.l-1:before,.l-1:after{
+  display:table;
+  content:"";
+  line-height:0;
+}
+.l-1:after{
+  clear:both;
+}
+.l-1 .g-mn-1{
+  position:relative;
+  float:left;
+  width:200px;
+}
+.l-1 .g-mn-3{
+  position:relative;
+  float:right;
+  width:100px;
+  margin-left:30px;
+}
+.l-1 .g-mn-2{
+  width:100%;
+  float:left;
+  margin-left:-200px;
+  margin-right:-130px;
+}
+.l-1 .g-mn-2 .g-mn-cnt{
+  position:relative;
+  margin-left:230px;
+  margin-right:130px;
+}
+```
+
+对应的html应该是
+
+```
+<div class="l-1">
+  <div class="g-mn-1"></div>
+  <div class="g-mn-2">
+    <div class="g-mn-cnt">l-1</div>
+  </div>
+  <div class="g-mn-3"></div>
+</div>
+```
+注意自适应栏的容器为g-mn-cnt, 而固定宽度栏为对应的下标容器节点
 
 
-#### 2. $fixed-grid()
+当没有 __自适应栏__(即无auto的参数)时，会设置容器的宽度， 值为之前所有的宽度和以及间距和如
 
-固定布局(基于px)的栅格系统生成
+```
+.l-3{
+  $fixed-layout: 200px 600px, 10px;
+}
+```
+
+```css
+.l-3{
+  *zoom:1;
+  width:810px;
+}
+.l-3:before,.l-3:after{
+  display:table;
+  content:"";
+  line-height:0;
+}
+.l-3:after{
+  clear:both;
+}
+.l-3 .col-1{
+  position:relative;
+  float:left;
+  width:200px;
+}
+.l-3 .col-2{
+  position:relative;
+  float:right;
+  width:600px;
+  margin-left:10px;
+}
+```
 
 
-#### 3. $fluid-grid()
+#### 2. $fixed-grid($col-width, $gap=0px, $col-num=12, $prefix='')
 
-流式布局栅格系统生成(基于%)
+固定布局(基于px)的栅格系统生成, 一般用于整个产品的页面时
+
+__Exmpale__
+一键生成 bootstarp的栅格系统，并且兼容ie6
+
+```
+$fixed-grid(60px, 20px, 12);
+```
+
+__Outport__
+
+```
+.span1,.span2,.span3,.span4,.span5,.span6,.span7,.span8,.span9,.span10,.span11,.span12{
+  float:left;
+  min-height:1px;
+  margin-left:20px;
+  display:inline;
+}
+.span1{
+  width:60px;
+}
+.offset1{
+  margin-left:100px;
+}
+.span2{
+  width:140px;
+}
+.offset2{
+  margin-left:180px;
+}
+.span3{
+  width:220px;
+}
+.offset3{
+  margin-left:260px;
+}
+.span4{
+  width:300px;
+}
+.offset4{
+  margin-left:340px;
+}
+.span5{
+  width:380px;
+}
+.offset5{
+  margin-left:420px;
+}
+.span6{
+  width:460px;
+}
+.offset6{
+  margin-left:500px;
+}
+.span7{
+  width:540px;
+}
+.offset7{
+  margin-left:580px;
+}
+.span8{
+  width:620px;
+}
+.offset8{
+  margin-left:660px;
+}
+.span9{
+  width:700px;
+}
+.offset9{
+  margin-left:740px;
+}
+.span10{
+  width:780px;
+}
+.offset10{
+  margin-left:820px;
+}
+.span11{
+  width:860px;
+}
+.offset11{
+  margin-left:900px;
+}
+.span12{
+  width:940px;
+}
+.offset12{
+  margin-left:980px;
+}
+.offset0{
+  margin-left:0px;
+}
+.row{
+  *zoom:1;
+  margin-left:-20px;
+}
+.row:before,.row:after{
+  display:table;
+  content:"";
+  line-height:0;
+}
+.row:after{
+  clear:both;
+}
+.container{
+  width:940px;
+}
+```
 
 
-#### 4. $elastic-grid()
-
-弹性布局栅格系统生成(基于em)
 
 
 

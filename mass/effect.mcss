@@ -1,3 +1,6 @@
+@import 'var';
+@import 'css3';
+
 /**
 mass effect.mcss almost all effect refactoring form 
 
@@ -10,13 +13,11 @@ Copyright (c) 2013 NetEase
  * This file is a good example show some mcss'advantage , like first-class function...
  */
 
-@import 'css3';
 
 /**
  * @options $effect-outpor {Boolean}
  * whether to output the keyframes. default is true
  */
-$effect-outport ?= false;
 // building effect
 $effect = ($name, $block, $with-class){
   $keyframes($name, $block);

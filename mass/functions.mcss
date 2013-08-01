@@ -1,3 +1,5 @@
+
+@import 'var';
 /**
  * convert the @if statement to function
  * beacuse call is a expression(means have value), sometimes can simplify our code
