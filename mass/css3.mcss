@@ -186,7 +186,7 @@ $keyframes = ($name, $block){
         $block(-o-);
     } 
     @keyframes $name{
-        $block();
+        $block('');
     } 
 }
 // __examlpe__

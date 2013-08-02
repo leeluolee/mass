@@ -489,6 +489,43 @@ __Outport__
 }
 ```
 
+#### $size($width, $height)
+
+同时设置宽度以及高度，如果没有传入$height, 则高度默认为$width
+__Argument__
+1. `$width`: 宽度
+2. `$height`: 高度(可选)
+
+
+#### $opacity($opa)
+
+设置透明度，处理了ie的兼容性.
+
+__Arguments__
+
+1. `$num`: 取值范围为0-1
+
+__Example__: 
+
+```
+.u-btn{
+  $opacity: 0.1;
+}
+```
+
+__Outport__:
+
+```
+
+```
+
+
+#### $min-height($height)
+
+设置最小高度，主要是处理了IE6下的问题
+
+__
+
 
 #### $display($type)
 

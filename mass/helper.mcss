@@ -58,14 +58,13 @@ $border = ($color){
 }
 
 
-// 
+// 宽度超过 显示省略号, $nowrap 切换是否换行.
 $txt-ellipsis = ($nowrap = true){
     @if $nowrap {
         white-space:nowrap }
     text-overflow:ellipsis; 
     overflow:hidden;
 }
-
 
 
 // position
@@ -81,6 +80,13 @@ $position = ($type){
 $lh = ($height){
     height: $height;
     line-height: $height; 
+}
+
+// the min-height hack for ie6
+$min-height = ($height){
+    min-height: $height;
+    height: auto !important;
+    _height: $height;
 }
 
 

@@ -268,7 +268,7 @@ $-generate(fadeOutY, ($prefix, $offset = 30px){
 
 // $bounce($height)
 // ------------------
-$-generate(bounce, ($prefix, $height){
+$-generate(bounce, ($prefix, $height=40px){
 
   0%, 20%, 50%, 80%, 100% {#{$prefix}transform: translateY(0);}
   40% {#{$prefix}transform: translateY(-$height);}
