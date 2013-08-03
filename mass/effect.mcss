@@ -13,10 +13,9 @@ Copyright (c) 2013 NetEase
  * This file is a good example show some mcss'advantage , like first-class function...
  */
 
-
 /**
- * @options $effect-outpor {Boolean}
- * whether to output the keyframes. default is true
+ * @options $effect-outport {Boolean}
+ * whether to output the keyframes. default is false
  */
 // building effect
 $effect = ($name, $block, $with-class){

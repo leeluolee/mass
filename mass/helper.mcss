@@ -67,6 +67,7 @@ $txt-ellipsis = ($nowrap = true){
 }
 
 
+
 // position
 $position = ($type){
     position: $type;

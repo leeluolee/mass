@@ -26,6 +26,7 @@ $fixed-layout = ($widths ,$gap = 0px, $class='col'){
     $autoIndex = null;
     $leftWidth = 0px;
     $rightWidth = 0px;
+    
     @for $width, $i of $widths {
         @if $width != auto {
             $float = $if($i != $last, left, right);
