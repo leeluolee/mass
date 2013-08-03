@@ -7,16 +7,16 @@ mass effect.mcss almost all effect refactoring form
 http://nec.netease.com/library/category/#animation
 Licensed under the MIT license
 Copyright (c) 2013 NetEase
+
+and animate.css
+https://github.com/daneden/animate.css
+Licensed under the MIT license
 */
 
 /**
  * This file is a good example show some mcss'advantage , like first-class function...
  */
 
-/**
- * @options $effect-outport {Boolean}
- * whether to output the keyframes. default is false
- */
 // building effect
 $effect = ($name, $block, $with-class){
   $keyframes($name, $block);

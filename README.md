@@ -550,6 +550,32 @@ __Outport__
 }
 ```
 
+#### $txt-ellipsis($nowrap = true)
+文字超过出现省略号
+
+__Arguments__
+
+1. $nowrap : 是否不断行 ,默认为true
+
+__Example__
+
+```
+td{
+  $txt-ellipsis();
+}
+```
+
+__Outport__
+
+```
+td{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+
+```
+
 
 #### $display($type)
 
@@ -582,6 +608,41 @@ p{
   display:-moz-box;
   display:box;
 }
+```
+
+
+####$font-face($name, $path, $block, $support-svg =false)
+处理@font-face
+
+__Arguments__
+
+1. $name—— 代表字体名
+2. $path—— 字体们的路径，需去掉后缀 ，如`/path/to/monoco`
+3. $block—— func，需混入的样式
+4. $support-svg —— 是否引入svg格式
+
+使用这个只是方便在一定约定下 引入各个格式的字体
+
+__Exmaple__
+
+```
+$font-face('monaco','path/to/monaco', {
+  font-weight: bold; 
+  font-style: italic;
+});
+```
+
+__Outport__
+
+```css
+@font-face {
+  font-family:"monaco";
+  src:url("path/to/monaco.eot");
+  src:url("path/to/monaco.eot?#iefix") format("embedded-opentype"),url("path/to/monaco.woff") format("woff"),url("path/to/monaco.ttf") format("truetype");
+  font-weight:bold;
+  font-style: italic;
+}
+
 ```
 
 
@@ -884,6 +945,11 @@ __effect.mcss__ 中的所有效果都是基于以下两个函数`$effect`, `$eff
 __注意__ 
 
 使用$effect-func时，在调用对应函数
+
+
+#### 内置效果
+
+
 
 
 #### $effect($name, $block, $with-class)
@@ -1193,6 +1259,107 @@ __Outport2__
 这同时有个问题，就是在传入时, 不要让Text类型的参数成为你的末尾参数。否则$effect-func会视其为重命名参数
 
 
+#### 内置effect
+
+除了提供了`$effect`、`$effect-func`帮助我们创建自己的效果外,effect.mcss提供了几种效果，当开启 __`$effect-outport= true`__ 时候,可以将这些特效以默认值的方式直接输出，否则你可以分别调用来达到输出。
+
+__内置effect列表以及默认值信息:__
+
+只要需要参数的特效，都有默认值，所以你完全可以不传入参数。
+
+```
+// 
+$flash();
+$shake($offset = 10px);
+$bounce($height=40px);
+$tada($scale-offset = 0.2, $degree = 3deg);
+$swing($degree = 12deg);
+$pulse($scale-offset=0.1);
+$wobble($offset = 25%, $degree = 5deg);
+$wiggle( $degree = 12deg);
+
+$flip( $perspect = 300px);
+$flipInX();
+$flipInY();
+$flipOutX();
+$flipOutY();
+
+$fadeIn();
+$fadeOut();
+$fadeInX($offset = 30px);
+$fadeInY($offset = 30px);
+$fadeOutX($offset = 30px);
+$fadeOutY($offset = 30px);
+
+$bounceIn();
+$bounceOut();
+
+$rotateIn($start-deg= -360deg, $start-scale = 1.2);
+$rotateOut($end-deg= -360deg, $end-scale= 0.8);
+
+```
+
+这些函数都是利用$effect-func封装，所以可以传入参数，并修改对应的名称。
+使用时只要在节点上加入`.animated`与对应效果名，比如`.shake`即可, 与`animate.mcss`是一致的(其实就只是animate.css的mcss移植了);
+
+__Example__
+
+```
+$rotateIn(-270deg, 1.5);
+```
+
+__Outport__
+```css
+@-webkit-keyframes rotateIn{
+  0%{
+    opacity:0;
+    -webkit-transform:rotate(-270deg) scale(1.5);
+  }
+  100%{
+    -webkit-transform:rotate(0) scale(1);
+    opacity:1;
+  }
+}
+@-moz-keyframes rotateIn{
+  0%{
+    opacity:0;
+    -moz-transform:rotate(-270deg) scale(1.5);
+  }
+  100%{
+    -moz-transform:rotate(0) scale(1);
+    opacity:1;
+  }
+}
+@-o-keyframes rotateIn{
+  0%{
+    opacity:0;
+    -o-transform:rotate(-270deg) scale(1.5);
+  }
+  100%{
+    -o-transform:rotate(0) scale(1);
+    opacity:1;
+  }
+}
+@keyframes rotateIn{
+  0%{
+    opacity:0;
+    transform:rotate(-270deg) scale(1.5);
+  }
+  100%{
+    transform:rotate(0) scale(1);
+    opacity:1;
+  }
+}
+.animated.rotateIn{
+  -webkit-animation-name:rotateIn;
+  -moz-animation-name:rotateIn;
+  animation-name:rotateIn;
+}
+
+```
+
+animation是个非常灵活的css特性，效果是写不全的，利用`$effect`、`$effect-func`去封装自己的特效吧。
+
 
 <a name="functions"></a>
 ### 6. [functions.mcss](https://github.com/leeluolee/mass/blob/master/mass/functions.mcss)
@@ -1267,9 +1434,10 @@ $effect-outport ?= false;
 ## Changelog
 
 
-
 ## TODO
+开始写lib目录的js扩展 2013/8/4 0:17:21
 
-增加 $global `^=` 10px; 操作符 
+1. 雪碧图自动生成。
+2. 渐变图的生成，达到真正的跨浏览器
 
 
