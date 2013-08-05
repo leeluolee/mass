@@ -1,0 +1,65 @@
+// $effect-outport=true;
+@import 'mass/index';
+
+$shake(10px);
+$bounce(60px);
+// $flash();
+// $tada(0.4, 10deg);
+// $swing();
+// $pulse(0.3);
+// $wobble(30%, 10deg);
+// $wiggle(18deg);
+
+// $flip(900px);
+// $flipInX(30px);
+// $flipInY(60px);
+// $flipOutX(30px);
+// $flipOutY(60px);
+
+// $fadeIn();
+// $fadeOut();
+// $fadeInX(30px);
+// $fadeInY(60px);
+// $fadeOutX(30px);
+// $fadeOutY(60px);
+
+// $bounceIn();
+// $bounceOut();
+
+// $rotateIn();
+// $rotateOut();
+
+
+
+.container{
+  $effect-outport = 2;
+  $fixed-container: 800px;
+  div{
+    $border-radius: 30px, top;
+    $lh: 60px;
+
+    float: left;
+    width: 100px;
+    margin-top: 30px; 
+    margin-right: 40px;
+
+    cursor: pointer;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #16A085;
+    &:hover{
+      background-color: l-adjust( #16A085, 20%);
+    }
+    &:active{
+      background-color: l-adjust( #16A085, -10%);
+    }
+  }
+}
+
+$font-face(hello, 'heihei', {
+  font-weight: bold;
+}, true);
+
+

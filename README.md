@@ -3,6 +3,9 @@ mass a css toolbox based on [ __mcss(The new css preprocessor)__ ](https://githu
 
 mass提供大量的函数, 同时也是mcss的官方使用示例. 如果对于文档有疑惑，请参考[MCSS主页](https://github.com/leeluolee/mcss), 也可以留言
 
+__[所有代码都可以黏贴到MCSS的try page可行尝试](http://leeluolee.github.io/mcss/)__
+
+
 ## 使用
 
 ### 1. 安装mcss

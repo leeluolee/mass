@@ -17,6 +17,22 @@ Licensed under the MIT license
  * This file is a good example show some mcss'advantage , like first-class function...
  */
 
+/**
+ * 1. setup
+ * =======================
+ */
+$effect-setup = {
+  body {
+    -webkit-backface-visibility: hidden;
+  }
+  .animated {
+    $animation-duration: 1s;
+    $animation-fill-mode: both;
+  }
+}
+
+
+
 // building effect
 $effect = ($name, $block, $with-class){
   $keyframes($name, $block);
@@ -30,9 +46,15 @@ $effect = ($name, $block, $with-class){
 }
 
 
+
+
 //generate building function
 $effect-func = ($name, $block, $with-class){
   define('$' + $name, ($args..., $name2 = $name){
+    @if !$effect-outport{
+      $effect-setup();
+      $effect-outport ^= true;
+    }
     // if last arguments is not a text
     @if typeof($name2) != 'text'{
       push($args, $name2);
@@ -52,19 +74,13 @@ $effect-func = ($name, $block, $with-class){
 }
 
 // use $effect or $effect-func baseon $effect-outport variable
-$-generate = $if($effect-outport, $effect, $effect-func);
+@if $effect-outport{
+   $-generate  = $effect;
+   $effect-setup();
+}@else{
+   $-generate  = $effect-func;
+}
 
-/**
- * 1. setup
- * =======================
- */
-body {
-  -webkit-backface-visibility: hidden;
-}
-.animated {
-  $animation-duration: 1s;
-  $animation-fill-mode: both;
-}
 
 /**
  * 2. effect

@@ -1,0 +1,51 @@
+@import 'mass/layout';
+body{
+  margin:0;
+  padding: 20px 0;
+}
+.layout{
+    background-color: #ccc;
+    border-radius: 2px;
+    line-height: 30px;
+    min-height: 30px;
+    height: auto !important;
+    _height: 30px;
+    text-align: center;
+}
+
+.layout2{
+  @extend .layout;
+  background-color: #999;
+}
+
+.container { 
+  $fixed-container();
+  margin-top: 20px;
+
+}
+.row{
+  margin-bottom: 20px
+}
+
+
+
+// Start
+// ==================
+.l-1{
+  $fixed-layout: 200px auto 100px, 30px, g-mn;
+  margin-bottom: 10px;
+}
+
+.l-2{
+  $fixed-layout: 200px auto 30px 120px 50px 20px, 10px;
+  margin-bottom: 20px;
+}
+
+.l-3{
+  margin-left: auto;
+  margin-right: auto;
+  $fixed-layout: 200px 600px, 10px;
+}
+
+// 50 宽度  10间距   16个
+$fixed-grid(60px, 20px, 12);

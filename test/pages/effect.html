@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/effect.css" media="all">
+</head>
+<body>
+  <div class="container">
+    <div class="shake">shake</div>
+    <div class="flash">flash</div>
+    <div class="bounce">bounce</div>
+    <div class="tada">tada</div>
+    <div class="swing">swing</div>
+    <div class="pulse">pulse</div>
+    <div class="wobble">wobble</div>
+    <div class="wiggle">wiggle</div>
+    
+    <div class="flip">flip</div>
+    <div class="flipInX">flipInX</div>
+    <div class="flipOutX">flipOutX</div>
+    <div class="flipInY">flipInY</div>
+    <div class="flipOutY">flipOutY</div>
+    <div class="fadeIn">fadeIn</div>
+    <div class="fadeOut">fadeOut</div>
+    <div class="fadeInX">fadeInX</div>
+    <div class="fadeInY">fadeInY</div>
+    <div class="fadeOutX">fadeOutX</div>
+    <div class="fadeOutY">fadeOutY</div>
+    <div class="bounceIn">bounceIn</div>
+    <div class="bounceOut">bounceOut</div>
+    <div class="rotateIn">rotateIn</div>
+    <div class="rotateOut">rotateOut</div>
+  </div>
+
+<div class="arr"></div>
+<script src="../components/zepto/zepto.js"></script>
+<script>
+  $('.container div').on('click',function(){
+    $node = $(this);
+    $node.removeClass('animated')
+    setTimeout(function(){
+      $node.addClass('animated');
+    })
+  });
+</script>
+</body>
+</html>
