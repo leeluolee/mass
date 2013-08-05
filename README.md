@@ -148,6 +148,8 @@ __Outport__
 
 __所有以上css3的参数与原样式一致__
 
+---------------------------------------------------
+
 
 #### $border-radius($radius, $direction)
 `$border-radius` 除了处理前缀, 可以传入额外参数控制位置, 
@@ -190,7 +192,7 @@ __Outport__
 }
 ```
 
-
+----------------------------------------------------------
 
 #### $linear-gradient = ($direct, $color-stops...)
 线型渐变
@@ -229,6 +231,8 @@ __Outport__
 }
 ```
 
+--------------------------------------------------
+
 
 #### $radial-gradient = ($color-stops...) 
 圆形渐变, 与线性渐变类似，不过这里color-stop的扩散方向是从圆点到外圈，
@@ -257,6 +261,7 @@ __Outport__
 }
 ```
 
+---------------------------------------------
 
 #### $keyframes = ($name, $block)
 兼容浏览器的keyframs写法, 与@keyframes对应, mass同时利用它封装了[`effect.mcss`](https://github.com/leeluolee/mass/blob/master/mcss/effect.mcss)
@@ -319,7 +324,7 @@ __Outport__
 }
 ```
 
-
+------------------------------------------------
 
 #### $placeholder ($block)  
 
@@ -434,6 +439,7 @@ __Outport__
 
 ```
 
+-------------------------------------------------
 
 <a name="reset"></a>
 ### 2. [reset.mcss](https://github.com/leeluolee/mass/blob/master/mass/reset.mcss)
@@ -495,6 +501,8 @@ __Outport__
 }
 ```
 
+----------------------------------------------
+
 #### $size($width, $height)
 
 同时设置宽度以及高度，如果没有传入$height, 则高度默认为$width
@@ -529,6 +537,8 @@ __Outport__:
 }
 ```
 
+---------------------------------------------
+
 
 #### $min-height($height)
 
@@ -552,6 +562,8 @@ __Outport__
   _height:20px;
 }
 ```
+
+---------------------------------------
 
 #### $txt-ellipsis($nowrap = true)
 文字超过出现省略号
@@ -579,6 +591,7 @@ td{
 
 ```
 
+--------------------------------------
 
 #### $display($type)
 
@@ -612,6 +625,8 @@ p{
   display:box;
 }
 ```
+
+---------------------------------------
 
 
 ####$font-face($name, $path, $block, $support-svg =false)
@@ -648,6 +663,7 @@ __Outport__
 
 ```
 
+-----------------------------------
 
 
 <a name="layout"></a>
@@ -765,6 +781,7 @@ __Outport__
 }
 ```
 
+-----------------------------------------------
 
 #### 2. $fixed-grid($col-width, $gap=0px, $col-num=12, $prefix='')
 
@@ -895,9 +912,10 @@ __Outport__
 }
 ```
 
-对应的demo可以查看test目录
+对应的demo可以查看 __test__目录
 
 
+----------------------------------------------
 
 #### $fixed-container($width)
 
@@ -1100,6 +1118,8 @@ __Outport__
 
 知道[animation.css](http://daneden.me/animate/)的应该明白如何使用，即只要加入对应的类名即可
 
+------------------------------------------------
+
 
 #### $effect-func($name, $block, $with-class)
 
@@ -1262,6 +1282,8 @@ __Outport2__
 这同时有个问题，就是在传入时, 不要让Text类型的参数成为你的末尾参数。否则$effect-func会视其为重命名参数
 
 
+--------------------------------
+
 #### 内置effect
 
 除了提供了`$effect`、`$effect-func`帮助我们创建自己的效果外,effect.mcss提供了几种效果，当开启 __`$effect-outport= true`__ 时候,可以将这些特效以默认值的方式直接输出，否则你可以分别调用来达到输出。
@@ -1363,6 +1385,7 @@ __Outport__
 
 animation是个非常灵活的css特性，效果是写不全的，利用`$effect`、`$effect-func`去封装自己的特效吧。
 
+-------------------------------
 
 <a name="functions"></a>
 ### 6. [functions.mcss](https://github.com/leeluolee/mass/blob/master/mass/functions.mcss)
@@ -1387,6 +1410,8 @@ body{
   left:2;
 }
 ```
+
+----------------------------------
 
 #### $map($valueslist, $key)
 
