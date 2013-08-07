@@ -49,3 +49,11 @@ body{
 
 // 50 宽度  10间距   16个
 $fixed-grid(60px, 20px, 12);
+
+
+.f-2{
+  $fluid-layout: 30% 40% 20%;
+}
+
+
+$fluid-grid(10px, 12, 'g');

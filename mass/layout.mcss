@@ -1,5 +1,4 @@
-@import 'var';
-@import 'helper';
+@import 'css3';
 
 // fixed-container
 // 居中 、固宽(假如传入$width)、清除浮动的
@@ -73,13 +72,6 @@ $fixed-layout = ($widths ,$gap = 0px, $class='col'){
     }
 }
 
-
-
-
-
-
-
-
 /**
  * 生成对应的固定栅格系统
  * __Arguments__
@@ -117,5 +109,53 @@ $fixed-grid = ($col-width, $gap = 0px, $num = 12, $prefix = ''){
     }   
 }
 
+/**
+ * fluid layout relative
+ */
+
+$fluid-row = ($gap = 0px){
+    margin-left: -($gap / 2); 
+    margin-right: -($gap / 2);
+    $clearfix();
+}
+
+$fluid-col = ($gap = 0px){
+    float: left;
+    position: relative;
+    min-height: 1px;
+    margin-left: $gap / 2;
+    margin-right: $gap / 2;
+    $box-sizing: border-box;
+}
+
+$fluid-layout = ($widths, $gap = 0px, $class='col'){
+    $fluid-row: $gap;
+    @abstract column{
+        $fluid-col: $gap;
+    }
+    @for $width, $i of $widths {
+        .#{$class}-#{$i + 1} {
+            @extend column;
+            width: $width;
+        }
+    }
+}
 
 
+$fluid-grid = ($gap = 0px, $num = 12, $prefix = ''){
+    @if $prefix{
+        $prefix = $prefix + '-';
+    }
+    .#{$prefix}row{
+        $fluid-row: $gap;
+    }
+    @abstract column {
+        $fluid-col: $gap;
+    }
+    @for $index of 1...$num {
+        .#{$prefix}col#{$index} {
+            @extend column;
+            width: 100% * $index / $num ;
+        }
+    }
+}
