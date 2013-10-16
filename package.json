@@ -4,8 +4,8 @@
   "private": false,
   "main": "./lib/index.js",
   "dependencies": {
-    "canvas": "*",
-    "commander": "*",
+    "image": "1.0.2",
+    "optimist": "0.6.x",
     "mcss": "*"
   }
 }

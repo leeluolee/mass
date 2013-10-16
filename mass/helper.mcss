@@ -126,3 +126,21 @@ $font-face = ($name, $path, $block, $support-svg = false){
     }
 }
 
+// set the color with hover:active state;
+// __exmaple__:
+// a{
+//    $state-color: red;
+//    // set the background-color but not the default color property
+//    $state-color: blue, $property = background-color;
+// }
+
+$state-color = ($color, $hover = 8%, $active = -5%, $property= color){
+  #{$property}: $color;
+  &:hover{
+    #{$property}: l-adjust($color, $hover);
+  }
+  &:active{
+    #{$property}: l-adjust($color, $active);
+  }
+}
+

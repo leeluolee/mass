@@ -123,9 +123,8 @@ $fluid-col = ($gap = 0px){
     float: left;
     position: relative;
     min-height: 1px;
-    margin-left: $gap / 2;
-    margin-right: $gap / 2;
-    $box-sizing: border-box;
+    padding-left: $gap / 2;
+    padding-right: $gap / 2;
 }
 
 $fluid-layout = ($widths, $gap = 0px, $class='col'){
@@ -143,19 +142,25 @@ $fluid-layout = ($widths, $gap = 0px, $class='col'){
 
 
 $fluid-grid = ($gap = 0px, $num = 12, $prefix = ''){
+    *, *:after, *:before{
+        $box-sizing: border-box;
+    }
     @if $prefix{
         $prefix = $prefix + '-';
-    }
-    .#{$prefix}row{
-        $fluid-row: $gap;
     }
     @abstract column {
         $fluid-col: $gap;
     }
     @for $index of 1...$num {
-        .#{$prefix}col#{$index} {
+        .#{$prefix}col-#{$index} {
             @extend column;
             width: 100% * $index / $num ;
         }
+        .#{$prefix}offset-#{$index} {
+            margin-left: 100% * $index / $num;
+        }
+    }
+    .#{$prefix}container{
+        $clearfix();
     }
 }

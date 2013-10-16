@@ -1,0 +1,7 @@
+@import '../css3.mcss';
+
+
+$long-shadow = ($deg = 45deg, $length = 30px, $color = #999){
+  $tan = tan($deg);
+  $for 1...$length
+}
