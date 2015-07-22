@@ -23,7 +23,7 @@ __直接import__ :
 mcss可以依赖远程mcss文件, (只要进程不退出, 远程文件会缓存在内存中, 比如开启了watch参数，这样只会在第一次build中会有载入开销), 我们可以很方便的引用网络上的mcss文件
 ```css
 /* mass入口文件 */
-@import 'https://rawgithub.com/leeluolee/mass/master/mass/index.mcss';
+@import 'https://rawgit.com/leeluolee/mass/master/mass/index.mcss';
 
 /* 此时你就可以使用mass的函数了 */
 .m-home{
