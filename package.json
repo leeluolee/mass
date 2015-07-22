@@ -1,11 +1,25 @@
 {
   "name": "mass",
-  "version": "0.0.1",
-  "private": false,
-  "main": "./lib/index.js",
-  "dependencies": {
-    "image": "1.0.2",
-    "optimist": "0.6.x",
+  "version": "0.1.0",
+  "description": "mcss function collection",
+  "main": "./mass/index.mcss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leeluolee/mass"
+  },
+  "keywords": [
+    "mcss",
+    "function"
+  ],
+  "contributors": [
+    "leeluolee"
+  ],
+  "author": "leeluolee",
+  "license": "MIT",
+  "devDependencies": {
     "mcss": "*"
   }
 }

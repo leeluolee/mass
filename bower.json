@@ -1,0 +1,21 @@
+{
+  "name": "mass",
+  "version": "0.1.0",
+  "homepage": "https://github.com/leeluolee/mass",
+  "authors": [
+    "leeluolee <87399126@163.com>"
+  ],
+  "description": "mcss function",
+  "main": "mass/index.mcss",
+  "keywords": [
+    "mcss"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
